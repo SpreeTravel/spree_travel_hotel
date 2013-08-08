@@ -12,6 +12,6 @@ SPREE_PATH = 'https://github.com/spree'
 
 source GEMS_PATH
 
-gem 'spree_auth_devise', :git => "#{SPREE_PATH}/spree_auth_devise", :branch => '2-0-stable'
+gem 'spree_auth_devise', :"#{MODE}" => "#{SPREE_PATH}/spree_auth_devise", :branch => '2-0-stable'
 
 gemspec
