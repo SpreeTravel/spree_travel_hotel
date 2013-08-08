@@ -1,10 +1,17 @@
-# Configuracion de PQR
-GEMS_PATH = 'http://localhost/rubygems/'
-SPREE_PATH = 'file:///home/pqr/work/jaf/spree'
+CONFIG = :pqr
+###########################################################################
+case CONFIG
+when :pqr
+  GEMS_PATH = 'http://localhost/rubygems/'
+  SPREE_TRAVEL_PATH = 'file:///home/pqr/work/jaf/openjaf'
+else
+  GEMS_PATH = 'http://rubygems.org'
+  SPREE_TRAVEL_PATH = 'https://github.com/openjaf'
+end
 ########################################################################
 
 source GEMS_PATH
 
-gem 'spree_travel', :path => '../spree_travel/'
+gem 'spree_travel', :git => "#{SPREE_TRAVEL_PATH}/spree_travel"
 
 gemspec
