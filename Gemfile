@@ -9,7 +9,7 @@ when :snc
   SPREE_TRAVEL_PATH = 'file:///media/Data/jaf/spree_travel'
 when :raul
   GEMS_PATH = 'http://localhost/rubygems/'
-  SPREE_TRAVEL_PATH = 'file:///home/raul/RubymineProjects/openjaf'    
+  SPREE_TRAVEL_PATH = 'file:///home/raul/RubymineProjects/openjaf'
 else
   GEMS_PATH = 'http://rubygems.org'
   SPREE_TRAVEL_PATH = 'file:///media/Data/jaf/spree'
