@@ -24,6 +24,6 @@ source GEMS_PATH
 
 gem 'spree_auth_devise', 	        :git => "#{SPREE_PATH}/spree_auth_devise", :branch => '2-0-stable'
 gem 'spree_travel_core', 	        :git => "#{SPREE_PATH}/spree_travel_core"
-gem 'spree_travel_accommodation', 	        :git => "#{SPREE_PATH}/spree_travel_accommodation"
+gem 'spree_travel_accommodation', 	:git => "#{SPREE_PATH}/spree_travel_accommodation"
 
 gemspec
