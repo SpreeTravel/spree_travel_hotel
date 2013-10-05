@@ -16,7 +16,13 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
+<<<<<<< HEAD:spree_travel_hotel.gemspec
   s.add_dependency 'spree_core', '~> 2.1.1'
+=======
+  s.add_dependency 'spree_core', '~> 2.0.3'
+  s.add_dependency 'spree_travel_core'
+  s.add_dependency 'spree_travel_accommodation'
+>>>>>>> origin/master:spree_travel_hotel.gemspec
 
   s.add_development_dependency 'capybara', '~> 2.0'
   s.add_development_dependency 'coffee-rails'
