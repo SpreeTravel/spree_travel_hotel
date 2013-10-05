@@ -1,7 +1,7 @@
 # encoding: UTF-8
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
-  s.name        = 'spree_travel_accommodation'
+  s.name        = 'spree_travel_hotel'
   s.version     = '2.0.3'
   s.summary     = 'Hotel into spree'
   s.description = 'Add hotel logic into spree'
