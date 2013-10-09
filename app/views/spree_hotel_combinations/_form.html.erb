@@ -1,0 +1,45 @@
+<%= form_for(@spree_hotel_combination) do |f| %>
+  <% if @spree_hotel_combination.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@spree_hotel_combination.errors.count, "error") %> prohibited this spree_hotel_combination from being saved:</h2>
+
+      <ul>
+      <% @spree_hotel_combination.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :room_id %><br>
+    <%= f.number_field :room_id %>
+  </div>
+  <div class="field">
+    <%= f.label :init_date %><br>
+    <%= f.date_select :init_date %>
+  </div>
+  <div class="field">
+    <%= f.label :end_date %><br>
+    <%= f.date_select :end_date %>
+  </div>
+  <div class="field">
+    <%= f.label :plan_id %><br>
+    <%= f.number_field :plan_id %>
+  </div>
+  <div class="field">
+    <%= f.label :adults %><br>
+    <%= f.number_field :adults %>
+  </div>
+  <div class="field">
+    <%= f.label :children %><br>
+    <%= f.number_field :children %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br>
+    <%= f.text_field :price %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
