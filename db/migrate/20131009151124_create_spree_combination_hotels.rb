@@ -1,6 +1,6 @@
-class CreateSpreeHotelCombinations < ActiveRecord::Migration
+class CreateSpreeCombinationHotels < ActiveRecord::Migration
   def change
-    create_table :spree_hotel_combinations do |t|
+    create_table :spree_combination_hotels do |t|
       t.integer :room_id
       t.date :init_date
       t.date :end_date
