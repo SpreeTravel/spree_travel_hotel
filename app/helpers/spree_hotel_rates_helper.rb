@@ -1,2 +1,0 @@
-module SpreeHotelRatesHelper
-end

@@ -1,7 +1,11 @@
 Spree::Core::Engine.routes.draw do
-  resources :spree_hotel_combinations
+  namespace :spree do
+    resources :hotel_combinations
+  end
 
-  resources :spree_hotel_rates
+  namespace :spree do
+    resources :hotel_rates
+  end
 
   # Add your extension routes here
 end

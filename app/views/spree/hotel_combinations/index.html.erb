@@ -1,0 +1,39 @@
+<h1>Listing spree_hotel_combinations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Room</th>
+      <th>Init date</th>
+      <th>End date</th>
+      <th>Plan</th>
+      <th>Adults</th>
+      <th>Children</th>
+      <th>Price</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @spree_hotel_combinations.each do |spree_hotel_combination| %>
+      <tr>
+        <td><%= spree_hotel_combination.room_id %></td>
+        <td><%= spree_hotel_combination.init_date %></td>
+        <td><%= spree_hotel_combination.end_date %></td>
+        <td><%= spree_hotel_combination.plan_id %></td>
+        <td><%= spree_hotel_combination.adults %></td>
+        <td><%= spree_hotel_combination.children %></td>
+        <td><%= spree_hotel_combination.price %></td>
+        <td><%= link_to 'Show', spree_hotel_combination %></td>
+        <td><%= link_to 'Edit', edit_spree_hotel_combination_path(spree_hotel_combination) %></td>
+        <td><%= link_to 'Destroy', spree_hotel_combination, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Hotel combination', new_spree_hotel_combination_path %>
