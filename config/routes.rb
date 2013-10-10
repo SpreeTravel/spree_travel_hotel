@@ -1,5 +1,5 @@
 Spree::Core::Engine.routes.draw do
-  namespace :spree do
+  namespace :admin do
     resources :rate_hotels
   end
 
