@@ -1,0 +1,49 @@
+<h1>Listing spree_rate_hotels</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Room</th>
+      <th>Init date</th>
+      <th>End date</th>
+      <th>Plan</th>
+      <th>Adults one</th>
+      <th>Adults two</th>
+      <th>Adultd three</th>
+      <th>Children one</th>
+      <th>Children two</th>
+      <th>Adults extra</th>
+      <th>Exceptions</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @spree_rate_hotels.each do |spree_rate_hotel| %>
+      <tr>
+        <td><%= spree_rate_hotel.product_id %></td>
+        <td><%= spree_rate_hotel.room_id %></td>
+        <td><%= spree_rate_hotel.init_date %></td>
+        <td><%= spree_rate_hotel.end_date %></td>
+        <td><%= spree_rate_hotel.plan_id %></td>
+        <td><%= spree_rate_hotel.adults_one %></td>
+        <td><%= spree_rate_hotel.adults_two %></td>
+        <td><%= spree_rate_hotel.adultd_three %></td>
+        <td><%= spree_rate_hotel.children_one %></td>
+        <td><%= spree_rate_hotel.children_two %></td>
+        <td><%= spree_rate_hotel.adults_extra %></td>
+        <td><%= spree_rate_hotel.exceptions %></td>
+        <td><%= link_to 'Show', spree_rate_hotel %></td>
+        <td><%= link_to 'Edit', edit_spree_rate_hotel_path(spree_rate_hotel) %></td>
+        <td><%= link_to 'Destroy', spree_rate_hotel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Rate hotel', new_spree_rate_hotel_path %>
