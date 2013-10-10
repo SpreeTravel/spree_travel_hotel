@@ -1,49 +1,75 @@
-<h1>Listing spree_rate_hotels</h1>
+<%= render :partial => 'spree/admin/shared/configuration_menu' %>
 
-<table>
+<% content_for :page_title do %>
+  <%= Spree.t(:hotel_rate) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <ul class="actions inline-menu">
+    <li>
+    <%= button_link_to Spree.t(:new_rate_hotel), new_object_url(:permalink => params[:permalink]), :icon => 'icon-plus', :id => 'admin_new_rate_hotel_link' %>
+    </li>
+  </ul>
+<% end %>
+
+<table class="index" id='listing_rate_hotels' data-hook>
+<!--
+  <colgroup>
+    <col style="width: 30%" />
+    <col style="width: 25%" />
+    <col style="width: 20%" />
+    <col style="width: 10%" />
+    <col style="width: 15%" />
+  </colgroup>
+-->
   <thead>
-    <tr>
-      <th>Product</th>
-      <th>Room</th>
-      <th>Init date</th>
-      <th>End date</th>
-      <th>Plan</th>
-      <th>Adults one</th>
-      <th>Adults two</th>
-      <th>Adultd three</th>
-      <th>Children one</th>
-      <th>Children two</th>
-      <th>Adults extra</th>
-      <th>Exceptions</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
+  <tr data-hook="rate_hotel_header">
+      <th> <%= Spree.t(:room) %> </th>
+      <th> <%= Spree.t(:begin) %> </th>
+      <th> <%= Spree.t(:end) %> </th>
+      <th> <%= Spree.t(:plan) %> </th>
+      <th> <%= '1A' %> </th>
+      <th> <%= '2A' %> </th>
+      <th> <%= '3A' %> </th>
+      <th> <%= '1C' %> </th>
+      <th> <%= '2C' %> </th>
+      <th> <%= 'AE' %> </th>
+      <!-- TODO: hacer una tabla excepciones igualita que esta con un boton en esta misma vista-->
+    <th class="actions"></th>
+  </tr>
   </thead>
-
   <tbody>
-    <% @spree_rate_hotels.each do |spree_rate_hotel| %>
-      <tr>
-        <td><%= spree_rate_hotel.product_id %></td>
-        <td><%= spree_rate_hotel.room_id %></td>
-        <td><%= spree_rate_hotel.init_date %></td>
-        <td><%= spree_rate_hotel.end_date %></td>
-        <td><%= spree_rate_hotel.plan_id %></td>
-        <td><%= spree_rate_hotel.adults_one %></td>
-        <td><%= spree_rate_hotel.adults_two %></td>
-        <td><%= spree_rate_hotel.adultd_three %></td>
-        <td><%= spree_rate_hotel.children_one %></td>
-        <td><%= spree_rate_hotel.children_two %></td>
-        <td><%= spree_rate_hotel.adults_extra %></td>
-        <td><%= spree_rate_hotel.exceptions %></td>
-        <td><%= link_to 'Show', spree_rate_hotel %></td>
-        <td><%= link_to 'Edit', edit_spree_rate_hotel_path(spree_rate_hotel) %></td>
-        <td><%= link_to 'Destroy', spree_rate_hotel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+  <% @rate_hotels.each do |rate_hotel|
+    @delete_url = admin_rate_hotel_path(rate_hotel)
+    room_options = options_for_select([["Standard", 1], ["Master Suite", 2], ["Junior Suite", 3]], rate_hotel.room_id)
+    plan_options = options_for_select([["CP", 1], ["AP", 2], ["MAP", 3]], rate_hotel.room_id)
+    id = rate_hotel.id
+  %>
+    <tr id="<%= spree_dom_id rate_hotel %>" data-hook="rate_hotel_row" class="<%= cycle('odd', 'even')%>">
+      <td><%= select_tag "room_#{id}", room_options  %></td>
+      <td><%= text_field_tag "init_date_#{id}", rate_hotel.init_date, :class => 'two columns' %></td>
+      <td><%= text_field_tag "end_date_#{id}", rate_hotel.end_date, :class => 'two columns' %></td>
+      <td><%= select_tag "plan_#{id}", plan_options  %></td>
+      <td><%= text_field_tag "adults_one_#{id}", rate_hotel.adults_one, :class => 'one column' %></td>
+      <td><%= text_field_tag "adults_two_#{id}", rate_hotel.adults_two, :class => 'one column' %></td>
+      <td><%= text_field_tag "adults_three_#{id}", rate_hotel.adults_three, :class => 'one column' %></td>
+      <td><%= rate_hotel.adults_three %></td>
+      <td><%= rate_hotel.children_one %></td>
+      <td><%= rate_hotel.children_two %></td>
+      <td><%= rate_hotel.adults_extra %></td>
+      <td class="actions">
+        <%= link_to_delete rate_hotel, :no_text => true %>
+    </tr>
+  <% end %>
+  <% if @rate_hotels.empty? %>
+    <tr data-hook="rate_hotel_none"><td colspan="10"><%= Spree.t(:no_rate_for_this_hotel) %></td></tr>
+  <% end %>
   </tbody>
 </table>
 
-<br>
+<h1> AQUI VAN LAS EXCEPCIONES </h2>
 
-<%= link_to 'New Rate hotel', new_spree_rate_hotel_path %>
+
+
+
+

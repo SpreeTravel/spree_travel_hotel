@@ -1,5 +1,4 @@
-module SpreeTravel
-  module Hotel
+module SpreeTravelHotel
     class Engine < Rails::Engine
       require 'spree/core'
       isolate_namespace Spree
@@ -20,5 +19,4 @@ module SpreeTravel
 
       config.to_prepare &method(:activate).to_proc
     end
-  end
 end

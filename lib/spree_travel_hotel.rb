@@ -1,2 +1,2 @@
 require 'spree_core'
-require 'spree_travel/hotel/engine'
+require 'spree_travel_hotel/engine'
