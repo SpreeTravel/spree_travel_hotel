@@ -1,4 +1,4 @@
-class Spree::RateHotelsController < ApplicationController
+class Spree::Admin::RateHotelsController < ApplicationController
   before_action :set_spree_rate_hotel, only: [:show, :edit, :update, :destroy]
 
   # GET /spree/rate_hotels
