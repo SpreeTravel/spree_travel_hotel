@@ -1,4 +1,4 @@
-module SpreeTravelHotel
+module SpreeTravel::Hotel
   module Generators
     class InstallGenerator < Rails::Generators::Base
 
