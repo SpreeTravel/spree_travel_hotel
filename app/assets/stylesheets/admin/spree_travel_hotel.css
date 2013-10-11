@@ -1,3 +1,12 @@
 /*
  *= require admin/spree_backend
 */
+
+#listing_rate_hotels td {
+}
+
+table td input[type="text"].small {
+  padding: 3px 3px;
+}
+
+

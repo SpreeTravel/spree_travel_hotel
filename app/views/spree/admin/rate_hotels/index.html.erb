@@ -1,4 +1,4 @@
-<%= render :partial => 'spree/admin/shared/configuration_menu' %>
+<%= render :partial => 'spree/admin/shared/product_tabs', :locals => {:current => 'Product Rate'} %>
 
 <% content_for :page_title do %>
   <%= Spree.t(:hotel_rate) %>
@@ -12,22 +12,27 @@
   </ul>
 <% end %>
 
+<%= form_tag(update_rate_path(params[:permalink])) do %>
 <table class="index" id='listing_rate_hotels' data-hook>
-<!--
   <colgroup>
-    <col style="width: 30%" />
-    <col style="width: 25%" />
-    <col style="width: 20%" />
-    <col style="width: 10%" />
-    <col style="width: 15%" />
+    <col />
+    <col />
+    <col style="width: 12%" />
+    <col style="width: 12%" />
+    <col style="width: 6%" />
+    <col style="width: 6%" />
+    <col style="width: 6%" />
+    <col style="width: 6%" />
+    <col style="width: 6%" />
+    <col style="width: 6%" />
+    <col />
   </colgroup>
--->
   <thead>
   <tr data-hook="rate_hotel_header">
       <th> <%= Spree.t(:room) %> </th>
+      <th> <%= Spree.t(:plan) %> </th>
       <th> <%= Spree.t(:begin) %> </th>
       <th> <%= Spree.t(:end) %> </th>
-      <th> <%= Spree.t(:plan) %> </th>
       <th> <%= '1A' %> </th>
       <th> <%= '2A' %> </th>
       <th> <%= '3A' %> </th>
@@ -42,21 +47,20 @@
   <% @rate_hotels.each do |rate_hotel|
     @delete_url = admin_rate_hotel_path(rate_hotel)
     room_options = options_for_select([["Standard", 1], ["Master Suite", 2], ["Junior Suite", 3]], rate_hotel.room_id)
-    plan_options = options_for_select([["CP", 1], ["AP", 2], ["MAP", 3]], rate_hotel.room_id)
+    plan_options = options_for_select([["CP", 1], ["AP", 2], ["MAP", 3]], rate_hotel.plan_id)
     id = rate_hotel.id
   %>
     <tr id="<%= spree_dom_id rate_hotel %>" data-hook="rate_hotel_row" class="<%= cycle('odd', 'even')%>">
       <td><%= select_tag "room_#{id}", room_options  %></td>
-      <td><%= text_field_tag "init_date_#{id}", rate_hotel.init_date, :class => 'two columns' %></td>
-      <td><%= text_field_tag "end_date_#{id}", rate_hotel.end_date, :class => 'two columns' %></td>
       <td><%= select_tag "plan_#{id}", plan_options  %></td>
-      <td><%= text_field_tag "adults_one_#{id}", rate_hotel.adults_one, :class => 'one column' %></td>
-      <td><%= text_field_tag "adults_two_#{id}", rate_hotel.adults_two, :class => 'one column' %></td>
-      <td><%= text_field_tag "adults_three_#{id}", rate_hotel.adults_three, :class => 'one column' %></td>
-      <td><%= rate_hotel.adults_three %></td>
-      <td><%= rate_hotel.children_one %></td>
-      <td><%= rate_hotel.children_two %></td>
-      <td><%= rate_hotel.adults_extra %></td>
+      <td><%= text_field_tag "init_date_#{id}", rate_hotel.init_date, :class => 'datepicker small' %></td>
+      <td><%= text_field_tag "end_date_#{id}", rate_hotel.end_date, :class => 'datepicker small' %></td>
+      <td><%= text_field_tag "adults_one_#{id}", rate_hotel.adults_one, :class => 'small' %></td>
+      <td><%= text_field_tag "adults_two_#{id}", rate_hotel.adults_two, :class => 'small' %></td>
+      <td><%= text_field_tag "adults_three_#{id}", rate_hotel.adults_three, :class => 'small' %></td>
+      <td><%= text_field_tag "children_one_#{id}", rate_hotel.children_one, :class => 'small' %></td>
+      <td><%= text_field_tag "children_two_#{id}", rate_hotel.children_two, :class => 'small' %></td>
+      <td><%= text_field_tag "adults_extra_#{id}", rate_hotel.adults_extra, :class => 'small' %></td>
       <td class="actions">
         <%= link_to_delete rate_hotel, :no_text => true %>
     </tr>
@@ -69,7 +73,10 @@
 
 <h1> AQUI VAN LAS EXCEPCIONES </h2>
 
+<div class="form-buttons filter-actions actions" data-hook="buttons">
+  <%= submit_tag Spree.t('actions.update'), :class => 'icon-refresh button' %>
+</div>
 
-
+<% end %>
 
 
