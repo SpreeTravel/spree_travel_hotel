@@ -8,23 +8,36 @@ module Spree
         @product = Spree::Product.find_by_permalink(params[:permalink])
       end
 
-      def new
+      def new_exception
         permalink = params[:permalink]
         product = Spree::Product.find_by_permalink(permalink)
-        invoke_callbacks(:new_action, :before)
-        invoke_callbacks(:create, :before)
-        @object.attributes = {:product_id => product.id}
-        if @object.save
-          invoke_callbacks(:create, :after)
-          flash[:success] = flash_message_for(@object, :successfully_created)
-          respond_with(@object) do |format|
-            format.html { redirect_to rates_path(permalink) }
+        exception = Spree::ExceptionHotel.new :product_id => product.id
+        if exception.save
+          flash[:success] = flash_message_for(exception, :successfully_created)
+          respond_with(exception) do |format|
+            format.html { redirect_to hotel_rates_path(permalink) }
             format.js   { render :layout => false }
           end
         else
-          invoke_callbacks(:create, :fails)
+          respond_with(exception) do |format|
+            format.html { redirect_to hotel_rates_path(permalink) }
+          end
+        end
+      end
+
+      def new
+        permalink = params[:permalink]
+        product = Spree::Product.find_by_permalink(permalink)
+        @object.attributes = {:product_id => product.id}
+        if @object.save
+          flash[:success] = flash_message_for(@object, :successfully_created)
           respond_with(@object) do |format|
-            format.html { redirect_to rates_path(permalink) }
+            format.html { redirect_to hotel_rates_path(permalink) }
+            format.js   { render :layout => false }
+          end
+        else
+          respond_with(@object) do |format|
+            format.html { redirect_to hotel_rates_path(permalink) }
           end
         end
       end
@@ -50,7 +63,7 @@ module Spree
         #rescue
         #  flash[:error] = "Something went wrong while updating rate"
         end
-        redirect_to rates_path(permalink)
+        redirect_to hotel_rates_path(permalink)
       end
 
       def destroy
@@ -60,13 +73,13 @@ module Spree
           invoke_callbacks(:destroy, :after)
           flash[:success] = flash_message_for(@object, :successfully_removed)
           respond_with(@object) do |format|
-            format.html { redirect_to rates_path(permalink) }
+            format.html { redirect_to hotel_rates_path(permalink) }
             format.js   { render :partial => "spree/admin/shared/destroy" }
           end
         else
           invoke_callbacks(:destroy, :fails)
           respond_with(@object) do |format|
-            format.html { redirect_to rates_path(permalink) }
+            format.html { redirect_to hotel_rates_path(permalink) }
           end
         end
       end

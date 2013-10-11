@@ -7,13 +7,23 @@
 <% content_for :page_actions do %>
   <ul class="actions inline-menu">
     <li>
-    <%= button_link_to Spree.t(:new_rate_hotel), new_object_url(:permalink => params[:permalink]), :icon => 'icon-plus', :id => 'admin_new_rate_hotel_link' %>
+    <%= button_link_to Spree.t(:new_rate), new_hotel_rate_path(:permalink => params[:permalink]), :icon => 'icon-plus', :id => 'admin_new_rate_hotel_link' %>
+    <%= button_link_to Spree.t(:new_exception), new_hotel_exception_path(:permalink => params[:permalink]), :icon => 'icon-plus', :id => 'admin_new_exception_hotel_link' %>
     </li>
   </ul>
 <% end %>
 
-<%= form_tag(update_rate_path(params[:permalink])) do %>
+<%
+  # TODO: sacar los valores estos de los option_types
+    room_options           = [["Standard", 1], ["Master Suite", 2], ["Junior Suite", 3]]
+    room_options_with_null = [['-', nil]] + room_options
+    plan_options           = [["CP", 1], ["AP", 2], ["MAP", 3]]
+    plan_options_with_null = [['-', nil]] + plan_options
+%>
+
+<%= form_tag(update_hotel_rate_path(params[:permalink])) do %>
 <table class="index" id='listing_rate_hotels' data-hook>
+  <caption>Rates</caption>
   <colgroup>
     <col />
     <col />
@@ -39,20 +49,19 @@
       <th> <%= '1C' %> </th>
       <th> <%= '2C' %> </th>
       <th> <%= 'AE' %> </th>
-      <!-- TODO: hacer una tabla excepciones igualita que esta con un boton en esta misma vista-->
     <th class="actions"></th>
   </tr>
   </thead>
   <tbody>
   <% @rate_hotels.each do |rate_hotel|
     @delete_url = admin_rate_hotel_path(rate_hotel)
-    room_options = options_for_select([["Standard", 1], ["Master Suite", 2], ["Junior Suite", 3]], rate_hotel.room_id)
-    plan_options = options_for_select([["CP", 1], ["AP", 2], ["MAP", 3]], rate_hotel.plan_id)
+    room_select = options_for_select(room_options, rate_hotel.room_id)
+    plan_select = options_for_select(plan_options, rate_hotel.plan_id)
     id = rate_hotel.id
   %>
     <tr id="<%= spree_dom_id rate_hotel %>" data-hook="rate_hotel_row" class="<%= cycle('odd', 'even')%>">
-      <td><%= select_tag "room_#{id}", room_options  %></td>
-      <td><%= select_tag "plan_#{id}", plan_options  %></td>
+      <td><%= select_tag "room_#{id}", room_select  %></td>
+      <td><%= select_tag "plan_#{id}", plan_select  %></td>
       <td><%= text_field_tag "init_date_#{id}", rate_hotel.init_date, :class => 'datepicker small' %></td>
       <td><%= text_field_tag "end_date_#{id}", rate_hotel.end_date, :class => 'datepicker small' %></td>
       <td><%= text_field_tag "adults_one_#{id}", rate_hotel.adults_one, :class => 'small' %></td>
@@ -71,7 +80,42 @@
   </tbody>
 </table>
 
-<h1> AQUI VAN LAS EXCEPCIONES </h2>
+<table class="index" id='listing_exception_hotels' data-hook>
+  <caption>Exceptions</caption>
+  <thead>
+  <tr data-hook="exception_hotel_header">
+      <th> <%= Spree.t(:room) %> </th>
+      <th> <%= Spree.t(:plan) %> </th>
+      <th> <%= Spree.t(:begin) %> </th>
+      <th> <%= Spree.t(:end) %> </th>
+      <th> <%= Spree.t(:adults) %> </th>
+      <th> <%= Spree.t(:children) %> </th>
+    <th class="actions"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @product.exceptions.each do |exception|
+    @delete_url = destroy_hotel_exception_path(@product.permalink, exception.id)
+    room_select = options_for_select(room_options_with_null, exception.room_id)
+    plan_select = options_for_select(plan_options_with_null, exception.plan_id)
+    id = exception.id
+  %>
+    <tr id="<%= spree_dom_id exception %>" data-hook="exception_hotel_row" class="<%= cycle('odd', 'even')%>">
+      <td><%= select_tag "room_#{id}", room_select %></td>
+      <td><%= select_tag "plan_#{id}", plan_select  %></td>
+      <td><%= text_field_tag "init_date_#{id}", exception.init_date, :class => 'datepicker small' %></td>
+      <td><%= text_field_tag "end_date_#{id}", exception.end_date, :class => 'datepicker small' %></td>
+      <td><%= text_field_tag "adults_#{id}", exception.adults, :class => 'small' %></td>
+      <td><%= text_field_tag "children_#{id}", exception.children, :class => 'small' %></td>
+      <td class="actions">
+        <%= link_to_delete exception, :no_text => true %>
+    </tr>
+  <% end %>
+  <% if @product.exceptions.empty? %>
+    <tr data-hook="exception_hotel_none"><td colspan="10"><%= Spree.t(:no_exception_for_this_hotel) %></td></tr>
+  <% end %>
+  </tbody>
+</table>
 
 <div class="form-buttons filter-actions actions" data-hook="buttons">
   <%= submit_tag Spree.t('actions.update'), :class => 'icon-refresh button' %>

@@ -8,5 +8,13 @@ module Spree
     def rate_class
       RateHotel
     end
+
+    def combination_class
+      CombinationHotel
+    end
+
+    def exception_class
+      ExceptionHotel
+    end
   end
 end
