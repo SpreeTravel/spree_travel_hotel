@@ -9,6 +9,7 @@
     <li>
     <%= button_link_to Spree.t(:new_rate), new_hotel_rate_path(:permalink => params[:permalink]), :icon => 'icon-plus', :id => 'admin_new_rate_hotel_link' %>
     <%= button_link_to Spree.t(:new_exception), new_hotel_exception_path(:permalink => params[:permalink]), :icon => 'icon-plus', :id => 'admin_new_exception_hotel_link' %>
+    <%= button_link_to Spree.t(:generate), generate_hotel_combinations_path(:permalink => params[:permalink]), :id => 'admin_generate_hotel_combinations_link' %>
     </li>
   </ul>
 <% end %>
@@ -19,6 +20,8 @@
     room_options_with_null = [['-', nil]] + room_options
     plan_options           = [["CP", 1], ["AP", 2], ["MAP", 3]]
     plan_options_with_null = [['-', nil]] + plan_options
+    delete_options = {:no_text => true, :class => 'delete-resource', :data => {:confirm => Spree.t(:are_you_sure), :action => :remove}}
+    delete_options2 = {:no_text => true, :data => {:confirm => Spree.t(:are_you_sure), :method => :post}}
 %>
 
 <%= form_tag(update_hotel_rate_path(params[:permalink])) do %>
@@ -53,28 +56,28 @@
   </tr>
   </thead>
   <tbody>
-  <% @rate_hotels.each do |rate_hotel|
-    @delete_url = admin_rate_hotel_path(rate_hotel)
+  <% @product.rates.each do |rate_hotel|
+    @delete_url = destroy_hotel_rate_url(@product.permalink, rate_hotel.id)
     room_select = options_for_select(room_options, rate_hotel.room_id)
     plan_select = options_for_select(plan_options, rate_hotel.plan_id)
     id = rate_hotel.id
   %>
     <tr id="<%= spree_dom_id rate_hotel %>" data-hook="rate_hotel_row" class="<%= cycle('odd', 'even')%>">
-      <td><%= select_tag "room_#{id}", room_select  %></td>
-      <td><%= select_tag "plan_#{id}", plan_select  %></td>
-      <td><%= text_field_tag "init_date_#{id}", rate_hotel.init_date, :class => 'datepicker small' %></td>
-      <td><%= text_field_tag "end_date_#{id}", rate_hotel.end_date, :class => 'datepicker small' %></td>
-      <td><%= text_field_tag "adults_one_#{id}", rate_hotel.adults_one, :class => 'small' %></td>
-      <td><%= text_field_tag "adults_two_#{id}", rate_hotel.adults_two, :class => 'small' %></td>
-      <td><%= text_field_tag "adults_three_#{id}", rate_hotel.adults_three, :class => 'small' %></td>
-      <td><%= text_field_tag "children_one_#{id}", rate_hotel.children_one, :class => 'small' %></td>
-      <td><%= text_field_tag "children_two_#{id}", rate_hotel.children_two, :class => 'small' %></td>
-      <td><%= text_field_tag "adults_extra_#{id}", rate_hotel.adults_extra, :class => 'small' %></td>
+      <td><%= select_tag "rate_room_#{id}", room_select  %></td>
+      <td><%= select_tag "rate_plan_#{id}", plan_select  %></td>
+      <td><%= text_field_tag "rate_init_date_#{id}", rate_hotel.init_date, :class => 'datepicker small' %></td>
+      <td><%= text_field_tag "rate_end_date_#{id}", rate_hotel.end_date, :class => 'datepicker small' %></td>
+      <td><%= text_field_tag "rate_adults_one_#{id}", rate_hotel.adults_one, :class => 'small' %></td>
+      <td><%= text_field_tag "rate_adults_two_#{id}", rate_hotel.adults_two, :class => 'small' %></td>
+      <td><%= text_field_tag "rate_adults_three_#{id}", rate_hotel.adults_three, :class => 'small' %></td>
+      <td><%= text_field_tag "rate_children_one_#{id}", rate_hotel.children_one, :class => 'small' %></td>
+      <td><%= text_field_tag "rate_children_two_#{id}", rate_hotel.children_two, :class => 'small' %></td>
+      <td><%= text_field_tag "rate_adults_extra_#{id}", rate_hotel.adults_extra, :class => 'small' %></td>
       <td class="actions">
-        <%= link_to_delete rate_hotel, :no_text => true %>
+        <%= link_to_with_icon 'icon-trash', '', @delete_url, delete_options %>
     </tr>
   <% end %>
-  <% if @rate_hotels.empty? %>
+  <% if @product.rates.empty? %>
     <tr data-hook="rate_hotel_none"><td colspan="10"><%= Spree.t(:no_rate_for_this_hotel) %></td></tr>
   <% end %>
   </tbody>
@@ -101,14 +104,14 @@
     id = exception.id
   %>
     <tr id="<%= spree_dom_id exception %>" data-hook="exception_hotel_row" class="<%= cycle('odd', 'even')%>">
-      <td><%= select_tag "room_#{id}", room_select %></td>
-      <td><%= select_tag "plan_#{id}", plan_select  %></td>
-      <td><%= text_field_tag "init_date_#{id}", exception.init_date, :class => 'datepicker small' %></td>
-      <td><%= text_field_tag "end_date_#{id}", exception.end_date, :class => 'datepicker small' %></td>
-      <td><%= text_field_tag "adults_#{id}", exception.adults, :class => 'small' %></td>
-      <td><%= text_field_tag "children_#{id}", exception.children, :class => 'small' %></td>
+      <td><%= select_tag "exception_room_#{id}", room_select %></td>
+      <td><%= select_tag "exception_plan_#{id}", plan_select  %></td>
+      <td><%= text_field_tag "exception_init_date_#{id}", exception.init_date, :class => 'datepicker small' %></td>
+      <td><%= text_field_tag "exception_end_date_#{id}", exception.end_date, :class => 'datepicker small' %></td>
+      <td><%= text_field_tag "exception_adults_#{id}", exception.adults, :class => 'small' %></td>
+      <td><%= text_field_tag "exception_children_#{id}", exception.children, :class => 'small' %></td>
       <td class="actions">
-        <%= link_to_delete exception, :no_text => true %>
+        <%= link_to_with_icon 'icon-trash', '',  @delete_url, delete_options2 %>
     </tr>
   <% end %>
   <% if @product.exceptions.empty? %>

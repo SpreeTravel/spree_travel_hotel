@@ -16,5 +16,8 @@ module Spree
     def exception_class
       ExceptionHotel
     end
+
+    def generate_combinations
+    end
   end
 end
