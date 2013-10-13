@@ -58,9 +58,11 @@ module Spree
             rate.adults_one   = params["rate_adults_one_#{rate.id}"]
             rate.adults_two   = params["rate_adults_two_#{rate.id}"]
             rate.adults_three = params["rate_adults_three_#{rate.id}"]
+            rate.adults_extra = params["rate_adults_extra_#{rate.id}"]
             rate.children_one = params["rate_children_one_#{rate.id}"]
             rate.children_two = params["rate_children_two_#{rate.id}"]
-            rate.adults_extra = params["rate_adults_extra_#{rate.id}"]
+            rate.max_adults   = params["rate_max_adults_#{rate.id}"]
+            rate.max_children = params["rate_max_children_#{rate.id}"]
             rate.save
           end
           product.exceptions.each do |exception|
