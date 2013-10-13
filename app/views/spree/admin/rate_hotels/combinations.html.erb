@@ -14,6 +14,7 @@
     <th> <%= Spree.t(:end) %> </th>
     <th> <%= Spree.t(:adults) %> </th>
     <th> <%= Spree.t(:children) %> </th>
+    <th> <%= Spree.t(:price) %> </th>
   </tr>
   </thead>
   <tbody>
@@ -25,6 +26,7 @@
       <td><%= combination.end_date %></td>
       <td><%= combination.adults %></td>
       <td><%= combination.children %></td>
+      <td><%= combination.price %></td>
     </tr>
   <% end %>
   <% if @product.combinations.empty? %>
