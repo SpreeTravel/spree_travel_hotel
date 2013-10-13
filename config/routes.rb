@@ -1,6 +1,5 @@
 Spree::Core::Engine.routes.draw do
   namespace :admin do
-    resources :rate_hotels
     resources :product_hotels
   end
 
@@ -13,5 +12,5 @@ Spree::Core::Engine.routes.draw do
   match 'admin/products/:permalink/destroy_exception/:id' => 'admin/rate_hotels#destroy_exception', :via => :post, :as => :destroy_hotel_exception
   match 'admin/products/:permalink/generate_combinations' => 'admin/rate_hotels#generate_combinations', :via => :get, :as => :generate_hotel_combinations
 
-  # Add your extension routes here
+  match 'admin/products/:permalink/combination_hotels' => 'admin/rate_hotels#combinations', :via => :get, :as => :hotel_combinations
 end

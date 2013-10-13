@@ -4,6 +4,10 @@ module Spree
 
       before_filter :load_product
 
+      def combinations
+
+      end
+
       def load_product
         @product = Spree::Product.find_by_permalink(params[:permalink])
       end
