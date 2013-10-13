@@ -27,33 +27,20 @@
 <%= form_tag(update_hotel_rate_path(params[:permalink])) do %>
 <table class="index" id='listing_rate_hotels' data-hook>
   <caption>Rates</caption>
-  <colgroup>
-    <col />
-    <col />
-    <col style="width: 12%" />
-    <col style="width: 12%" />
-    <col style="width: 6%" />
-    <col style="width: 6%" />
-    <col style="width: 6%" />
-    <col style="width: 6%" />
-    <col style="width: 6%" />
-    <col style="width: 6%" />
-    <col />
-  </colgroup>
   <thead>
   <tr data-hook="rate_hotel_header">
       <th> <%= Spree.t(:room) %> </th>
       <th> <%= Spree.t(:plan) %> </th>
       <th> <%= Spree.t(:begin) %> </th>
       <th> <%= Spree.t(:end) %> </th>
-      <th> <%= '1A' %> </th>
-      <th> <%= '2A' %> </th>
-      <th> <%= '3A' %> </th>
-      <th> <%= 'AE' %> </th>
-      <th> <%= '1C' %> </th>
-      <th> <%= '2C' %> </th>
-      <th> <%= 'MA' %> </th>
-      <th> <%= 'MC' %> </th>
+      <th title="<%= Spree.t(:simple_room)%>"> <%= '1A' %> </th>
+      <th title="<%= Spree.t(:double_room)%>"> <%= '2A' %> </th>
+      <th title="<%= Spree.t(:triple_room)%>"> <%= '3A' %> </th>
+      <th title="<%= Spree.t(:extra_adult)%>"> <%= 'AE' %> </th>
+      <th title="<%= Spree.t(:first_child)%>"> <%= '1C' %> </th>
+      <th title="<%= Spree.t(:second_child)%>"> <%= '2C' %> </th>
+      <th title="<%= Spree.t(:max_adults)%>"> <%= 'MA' %> </th>
+      <th title="<%= Spree.t(:max_children)%>"> <%= 'MC' %> </th>
     <th class="actions"></th>
   </tr>
   </thead>

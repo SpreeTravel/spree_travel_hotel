@@ -2,4 +2,12 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  spree:
+    simple_room: Simple Room
+    double_room: Double Room
+    triple_room: Triple Room
+    extra_adult: Adult Extra
+    first_child: First Child
+    second_child: Second Child
+    max_adults: Max Adults
+    max_children: Max Children
