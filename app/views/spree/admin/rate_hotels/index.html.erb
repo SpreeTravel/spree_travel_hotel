@@ -27,6 +27,12 @@
 <%= form_tag(update_hotel_rate_path(params[:permalink])) do %>
 <table class="index" id='listing_rate_hotels' data-hook>
   <caption>Rates</caption>
+  <colgroup>
+    <col />
+    <col />
+    <col style="width: 12%" />
+    <col style="width: 12%" />
+  </colgroup>
   <thead>
   <tr data-hook="rate_hotel_header">
       <th> <%= Spree.t(:room) %> </th>
