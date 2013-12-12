@@ -22,7 +22,13 @@ module Spree
     end
 
     def generate_combinations
-      raise "NOT IMPLEMENTED"
+      self.rates.each do |r|
+        r.generate_variants
+      end
+    end
+
+    def prototype_instance
+
     end
 
     def calculate_price(context)
