@@ -1,0 +1,3 @@
+<!-- insert_bottom 'h1' -->
+<span class="stars-#"></span>
+<!-- TODO a esta clase hay que añadirle la selección de la property para que busque la estrella correspondiente.-->     
