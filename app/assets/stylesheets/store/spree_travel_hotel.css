@@ -1,3 +1,28 @@
 /*
  *= require store/spree_frontend
 */
+
+.stars-1{
+    background-image: url('stars.png');
+    /*background-position: 71px 73px;*/
+}
+
+.stars-2{
+    background-image: url('stars.png');
+    /*background-position: 71px 73px;*/
+}
+
+.stars-3{
+    background-image: url('stars.png');
+    /*background-position: 71px 73px;*/
+}
+
+.stars-4{
+    background-image: url('stars.png');
+    /*background-position: 71px 73px;*/
+}
+
+.stars-5{
+    background-image: url('stars.png');
+    /*background-position: 71px 73px;*/
+}
