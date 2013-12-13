@@ -22,13 +22,14 @@ module Spree
     end
 
     def generate_combinations
-      self.rates.each do |r|
-        r.generate_variants
-      end
+      self.rates.each.map {|r| r.generate_variants}
     end
 
-    def prototype_instance
-
+    def default_property
+      # TODO: en el name se puede poner el nombre de la clase y entonces el metodo default_property
+      # puede pasar a spree_travel_core
+      prototype = Spree::Prototype.find_by_name('Hotel')
+      prototype
     end
 
     def calculate_price(context)
