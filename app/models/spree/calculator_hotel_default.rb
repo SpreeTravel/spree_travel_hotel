@@ -13,9 +13,9 @@ module Spree
       if context[:init_date] && context[:end_date]
         variants = variants.where('init_date <= ?', context[:init_date]) if context[:init_date]
         variants = variants.where('end_date >= ?', context[:init_date]) if context[:init_date]
-        duration     = context[:end_date] - context[:init_date] + 1
+        duration = context[:end_date] - context[:init_date] + 1
       else
-        duration     = nil
+        duration = nil
       end
       prices = variants.pluck(:price).sort
       prices = prices.map {|p| p * duration } if duration
