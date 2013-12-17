@@ -1,0 +1,76 @@
+<table class="index" id="listing_products">
+        <tbody>
+        <tr>
+          <td>
+            Standard
+          </td>
+
+          <td>
+          <div id="product-price">
+          <div>
+            <span class="price selling" itemprop="price">
+              <%= display_price(@product.master) %>
+            </span>
+            <span itemprop="priceCurrency" content="<%= @product.currency %>"></span>
+          </div>
+        </div>
+          </td>
+          <td>
+            <%= render :partial => 'cart_form' %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Junior Suite
+          </td>
+ 
+          <td>
+                      <div id="product-price">
+          <div>
+            <span class="price selling" itemprop="price">
+              <%= display_price(@product.master) %>
+            </span>
+            <span itemprop="priceCurrency" content="<%= @product.currency %>"></span>
+          </div>
+          </td>
+          <td>
+            <%= render :partial => 'cart_form' %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Standard
+          </td>
+          <td>
+                      <div id="product-price">
+          <div>
+            <span class="price selling" itemprop="price">
+              <%= display_price(@product.master) %>
+            </span>
+            <span itemprop="priceCurrency" content="<%= @product.currency %>"></span>
+          </div>
+          </td>
+          <td>
+            <%= render :partial => 'cart_form' %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Junior Suite
+          </td>
+
+          <td>
+                      <div id="product-price">
+          <div>
+            <span class="price selling" itemprop="price">
+              <%= display_price(@product.master) %>
+            </span>
+            <span itemprop="priceCurrency" content="<%= @product.currency %>"></span>
+          </div>
+          </td>
+          <td>
+            <%= render :partial => 'cart_form' %>
+          </td>
+        </tr>
+        </tbody>
+</table>
