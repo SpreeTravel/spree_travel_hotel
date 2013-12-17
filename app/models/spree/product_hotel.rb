@@ -22,7 +22,7 @@ module Spree
     end
 
     def generate_combinations
-      self.rates.each.map {|r| r.generate_variants}
+      self.rates.map {|r| r.generate_variants}
     end
 
     def default_property
