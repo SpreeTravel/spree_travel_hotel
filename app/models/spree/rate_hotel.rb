@@ -39,11 +39,11 @@ module Spree
       option_values << OptionValue.find(self.plan_id)
       option_values << OptionValue.find_by_name("adult-#{adult}")
       option_values << OptionValue.find_by_name("child-#{child}")
-      option_values << OptionValue.find(:name => self.init_date.to_s).first_or_create(
+      option_values << OptionValue.where(:name => self.init_date.to_s).first_or_create(
           :presentation => self.init_date.to_s,
           :option_type_id => Spree::OptionType.find_by_name('start-season').id
       )
-      option_values << OptionValue.find(:name => self.end_date.to_s).first_or_create(
+      option_values << OptionValue.where(:name => self.end_date.to_s).first_or_create(
           :presentation => self.end_date.to_s,
           :option_type_id => Spree::OptionType.find_by_name('end-season').id
       )
