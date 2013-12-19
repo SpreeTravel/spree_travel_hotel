@@ -1,7 +1,7 @@
 module Spree
   class RateHotel < ActiveRecord::Base
     belongs_to :product, :class_name => 'Spree::Product', :foreign_key => :product_id
-    validate :validate_overlapping
+    #validate :validate_overlapping
     
     def generate_variants
       # TODO: falta evaluar excepciones
@@ -20,9 +20,9 @@ module Spree
       # TODO: formato de precios: +10% - 2, para todos los campos usando como base 2 adultos, este ultimo es float
       numbers = {1 => 'one', 2 => 'two', 3 => 'three'}
       method_adult = "adults_#{numbers[adult]}"
-      price_adult = self.respond_to?(method_adult) ? self.send(method_adult) : (self.adults_extra || 0)
+      price_adult = self.respond_to?(method_adult) ? (self.send(method_adult) || 0) : (self.adults_extra || 0)
       method_children = "children_#{numbers[child]}"
-      price_child = self.respond_to?(method_children) ? self.send(method_children) : (self.children_extra || 0)
+      price_child = self.respond_to?(method_children) ? (self.send(method_children) || 0) : (self.children_extra || 0)
       price = self.eval_price(self.adults_two, price_adult) * adult
       price += self.eval_price(self.adults_two, price_child) * child
       price
@@ -37,17 +37,19 @@ module Spree
       option_values = []
       option_values << OptionValue.find(self.room_id)
       option_values << OptionValue.find(self.plan_id)
-      option_values << OptionValue.find_by_name("adult-#{adult}")
-      option_values << OptionValue.find_by_name("child-#{child}")
-      option_values << OptionValue.where(:name => self.init_date.to_s).first_or_create(
-          :presentation => self.init_date.to_s,
-          :option_type_id => Spree::OptionType.find_by_name('start-season').id
-      )
-      option_values << OptionValue.where(:name => self.end_date.to_s).first_or_create(
-          :presentation => self.end_date.to_s,
-          :option_type_id => Spree::OptionType.find_by_name('end-season').id
-      )
+      option_values << self.find_or_create_ov("adult-#{adult}", adult.to_s, 'adult')
+      option_values << self.find_or_create_ov("child-#{child}", child.to_s, 'child')
+      option_values << self.find_or_create_ov( self.init_date.to_s,  self.init_date.to_s, 'start-season')
+      option_values << self.find_or_create_ov( self.end_date.to_s,  self.end_date.to_s, 'end-season')
       option_values
+    end
+
+    def find_or_create_ov(name, presentation, option_type)
+      option_value = OptionValue.where(:name => name).first_or_create(
+          :presentation => presentation,
+          :option_type_id => Spree::OptionType.find_by_name(option_type).id
+      )
+      option_value
     end
 
     def create_or_update_variant(product, price, option_values)
@@ -70,7 +72,7 @@ module Spree
 
     def validate_overlapping
       # TODO: restringir que no se puedan crear dos rates con el mismo room, plan, begin and end
-      exist = Spree::RateHotel.where(:room_id => self.room_id, :plan_id => self.plan_id).first
+      exist = Spree::RateHotel.where("id != ? and room_id = ? and plan_id = ?", [self.id, self.room_id, self.plan_id]).first
       if !exist.nil?
         errors.add(:base, 'Rate Hotel Overlapping')
       end
