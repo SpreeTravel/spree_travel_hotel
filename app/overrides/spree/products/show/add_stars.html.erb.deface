@@ -1,3 +1,3 @@
 <!-- insert_bottom 'h1' -->
-<span class="stars-#"></span>
+<span class="stars-#{@product.product_properties.where(:property_id => Spree::Property.find_by_name('stars')).first.value}"></span>
 <!-- TODO a esta clase hay que añadirle la selección de la property para que busque la estrella correspondiente.-->     
