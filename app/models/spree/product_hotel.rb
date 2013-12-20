@@ -26,8 +26,8 @@ module Spree
     end
 
     def default_property
-      # TODO: en el name se puede poner el nombre de la clase y entonces el metodo default_property
-      # puede pasar a spree_travel_core
+      # TODO: pasar este metodo para la clase Product
+      # TODO: asignar este valor cuando se crea un nuevo producto
       prototype = Spree::Prototype.find_by_name('Hotel')
       prototype
     end
