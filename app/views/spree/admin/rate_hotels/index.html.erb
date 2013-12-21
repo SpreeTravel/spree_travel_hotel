@@ -24,6 +24,9 @@
 %>
 
 <%= form_tag(update_hotel_rate_path(params[:permalink])) do %>
+<div>
+  <%= text_field_tag "profit_#{id}", @product.profit %>
+</div>
 <table class="index" id='listing_rate_hotels' data-hook>
   <caption>Rates</caption>
   <colgroup>
@@ -123,5 +126,3 @@
 </div>
 
 <% end %>
-
-

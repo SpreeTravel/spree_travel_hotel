@@ -25,15 +25,33 @@ module Spree
       self.rates.map {|r| r.generate_variants}
     end
 
-    def default_property
-      # TODO: en el name se puede poner el nombre de la clase y entonces el metodo default_property
-      # puede pasar a spree_travel_core
-      prototype = Spree::Prototype.find_by_name('Hotel')
-      prototype
+    def get_option_values_in_exception
+      self.exceptions.map {|e| e.get_option_values}
+    end
+
+    def default_prototype
+      Spree::Prototype.find_by_name('Hotel')
     end
 
     def calculate_price(context)
       calculator_class.calculate_price(:product => self, :context => context)
     end
+
+    def rooms
+      self.variants.map{|v| v.option_values.map(&:name).select{|ov| ov.starts_with?('room')}}.flatten.uniq
+    end
+
+    def plans
+      self.variants.map{|v| v.option_values.map(&:name).select{|ov| ov.starts_with?('plan')}}.flatten.uniq
+    end
+
+    def adults
+      self.variants.map{|v| v.option_values.map(&:name).select{|ov| ov.starts_with?('adult')}}.flatten.uniq
+    end
+
+    def children
+      self.variants.map{|v| v.option_values.map(&:name).select{|ov| ov.starts_with?('child')}}.flatten.uniq
+    end
+
   end
 end
