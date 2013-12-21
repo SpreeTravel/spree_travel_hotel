@@ -36,12 +36,12 @@ module Spree
 
     def get_option_values(adult, child)
       option_values = []
+      option_values << OptionValue.find_or_create(self.init_date.to_s, self.init_date.to_s, 'start-season')
+      option_values << OptionValue.find_or_create(self.end_date.to_s, self.end_date.to_s, 'end-season')
       option_values << OptionValue.find(self.room_id)
       option_values << OptionValue.find(self.plan_id)
       option_values << OptionValue.find_or_create("adult-#{adult}", adult.to_s, 'adult')
       option_values << OptionValue.find_or_create("child-#{child}", child.to_s, 'child')
-      option_values << OptionValue.find_or_create(self.init_date.to_s, self.init_date.to_s, 'start-season')
-      option_values << OptionValue.find_or_create(self.end_date.to_s, self.end_date.to_s, 'end-season')
       option_values
     end
 
@@ -56,7 +56,7 @@ module Spree
 
     def create_or_update_variant(product, price, option_values)
       lsku = (option_values.map(&:name)).join('-')
-      variant = Spree::Variant.where(:product_id => product_id, :long_sku => lsku).first
+      variant = Spree::Variant.where(:product_id => product_id).select{|v| v.long_sku == lsku}.first
       if variant.nil?
         variant = Spree::Variant.create(
             :product_id => product_id,

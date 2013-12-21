@@ -30,10 +30,7 @@ module Spree
     end
 
     def default_prototype
-      # TODO: pasar este metodo para la clase Product
-      # TODO: asignar este valor cuando se crea un nuevo producto
-      prototype = Spree::Prototype.find_by_name('Hotel')
-      prototype
+      Spree::Prototype.find_by_name('Hotel')
     end
 
     def calculate_price(context)
@@ -41,7 +38,19 @@ module Spree
     end
 
     def rooms
-      self.variants.map{|v| v.option_values.map(&:name).select{|ov| ov.starts_with?('room')}}.uniq
+      self.variants.map{|v| v.option_values.map(&:name).select{|ov| ov.starts_with?('room')}}.flatten.uniq
+    end
+
+    def plans
+      self.variants.map{|v| v.option_values.map(&:name).select{|ov| ov.starts_with?('plan')}}.flatten.uniq
+    end
+
+    def adults
+      self.variants.map{|v| v.option_values.map(&:name).select{|ov| ov.starts_with?('adult')}}.flatten.uniq
+    end
+
+    def children
+      self.variants.map{|v| v.option_values.map(&:name).select{|ov| ov.starts_with?('child')}}.flatten.uniq
     end
 
   end
