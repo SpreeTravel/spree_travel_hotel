@@ -37,6 +37,7 @@ module Spree
       calculator_class.calculate_price(:product => self, :context => context)
     end
 
+    #TODO esto debe ir mejor en un helper si es para la vista
     def rooms
       self.variants.map{|v| v.option_values.map(&:name).select{|ov| ov.starts_with?('room')}}.flatten.uniq
     end

@@ -13,4 +13,6 @@ en:
     second_child: Second Child
     max_adults: Max Adults
     max_children: Max Children
+    adults: Adults
+    children: Children
 
