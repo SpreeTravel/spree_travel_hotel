@@ -12,7 +12,7 @@ module Spree
           price = self.get_price(adult, child)
           option_values = self.get_option_values(adult, child)
           self.create_or_update_variant(self.product, price, option_values)
-	end
+	       end
       end
     end
 
