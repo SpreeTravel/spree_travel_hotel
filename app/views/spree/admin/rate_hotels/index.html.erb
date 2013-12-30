@@ -13,7 +13,6 @@
     </li>
   </ul>
 <% end %>
-
 <%
     room_options           = get_option_values('room')
     room_options_with_null = [['-', nil]] + room_options
@@ -24,9 +23,6 @@
 %>
 
 <%= form_tag(update_hotel_rate_path(params[:permalink])) do %>
-<div>
-  <%= text_field_tag "profit_#{id}", @product.profit %>
-</div>
 <table class="index" id='listing_rate_hotels' data-hook>
   <caption>Rates</caption>
   <colgroup>

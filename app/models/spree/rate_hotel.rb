@@ -30,7 +30,7 @@ module Spree
     end
 
     def eval_price(base_price, price)
-      #re = '/((-|+)?\d%)?((-|+)?\d)?/'
+      #re = '/((-|+)?\s*\d+\s*%)?\s*((-|+)?\s*\d+)?/'
       price
     end
 
