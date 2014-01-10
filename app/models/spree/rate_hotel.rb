@@ -18,7 +18,6 @@ module Spree
     end
 
     def get_price(adult, child)
-      # TODO: formato de precios: +10% - 2, para todos los campos usando como base 2 adultos, este ultimo es float
       numbers = {1 => 'one', 2 => 'two', 3 => 'three'}
       method_adult = "adults_#{numbers[adult]}"
       price_adult = self.respond_to?(method_adult) ? (self.send(method_adult) || 0) : (self.adults_extra || 0)
@@ -30,7 +29,8 @@ module Spree
     end
 
     def eval_price(base_price, price)
-      #re = '/((-|+)?\s*\d+\s*%)?\s*((-|+)?\s*\d+)?/'
+      # INFO: formato de precios: +10% - 2, para todos los campos usando como base 2 adultos, este ultimo es float
+      #re = '/((\-|\+)?\s*\d+\s*%)?\s*((\-|\+)?\s*\d+)?/'
       price
     end
 
