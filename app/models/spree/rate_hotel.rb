@@ -2,8 +2,9 @@ module Spree
   class RateHotel < ActiveRecord::Base
     belongs_to :product, :class_name => 'Spree::Product', :foreign_key => :product_id
     #validate :validate_overlapping
-
+    
     def generate_variants
+      # TODO: falta evaluar excepciones
       max_adults = self.max_adults || 0
       max_children = self.max_children || 0
       (1..max_adults).each do |adult|
