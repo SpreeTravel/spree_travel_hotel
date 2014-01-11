@@ -1,8 +1,12 @@
 module Spree
   class ContextHotel < ContextAccommodation
 
+    def self.default_room_id
+      OptionValue.where(:name => 'room-standard').first.id
+    end
+
     def self.default_plan_id
-      raise "NOT IMPLEMENTED"
+      OptionValue.where(:name => 'plan-continental-breakfast').first.id
     end
 
     def self.default_init_date
@@ -22,6 +26,10 @@ module Spree
     end
 
     ###########################################################################
+
+    def room_id
+      pod(@params[:room_id], ContextHotel.default_room_id)
+    end
 
     def plan_id
       pod(@params[:plan_id], ContextHotel.default_plan_id)

@@ -1,0 +1,38 @@
+<!-- insert_bottom 'div#tabcontent' -->
+<div id="hotel" class="tab-pane fade active in">
+              <ul class="search_date columns five">
+              <li>
+                <label id="entradas"><%= t('check_in')%> <br>
+                  <input id="entrada" type="text" name="check_in_accommodation" value="<%#= check_in_accommodation %>" onchange="CompareDates('entrada', 'salida', 1, true)" class="datepicker">
+                </label>
+              </li>
+              <li>
+                <label id="salidas"><%= t('check_out')%> <br>
+                  <input id="salida" type="text" name="check_out_accommodation" value="<%#= check_out_accommodation %>" onchange="CompareDates('entrada', 'salida', 1, false)" class="datepicker">
+                </label>
+              </li>
+            </ul>
+            
+             <ul class="search_pax columns five">
+              <li>
+                <label id="adults_hotel_label"> <%= Spree.t('adults') %><br>
+                  <%= select_tag :adults_hotel, options_for_select(get_option_values('adult')) %>
+                </label>
+              </li>
+              <li>
+                <label id="children_hotel_label"><%= Spree.t('children')%><br>
+                   <%= select_tag :children_hotel, options_for_select(get_option_values('child')) %>
+                </label>
+              </li>
+              <li>
+              </ul>
+              
+             <ul class="search_meal columns five">
+              <li>
+                <label id="meal_plan_hotel_label"><%= t('meal_plan')%> <br>
+                  <%= select_tag :meal_plan_hotel, options_for_select(get_option_values('plan')) %>
+                </label>
+              </li>
+            </ul>
+</div>
+

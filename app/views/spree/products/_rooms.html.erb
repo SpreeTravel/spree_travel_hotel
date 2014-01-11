@@ -1,0 +1,15 @@
+<table class="index" id='listing_hotels_rooms' data-hook>
+  <tbody>
+  <% rooms(@product).each do |room| %>
+    <tr id="<%#= spree_dom_id rate_hotel %>" data-hook="hotel_room_row" class="<%= cycle('odd', 'even')%>">
+      <td><%= room  %></td>
+      <td><%#= render :partial => 'cart_form' %></td>
+      <td><%#= text_field_tag "rate_init_date_#{id}", rate_hotel.init_date, :class => 'datepicker small' %></td>
+      <td></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
+        

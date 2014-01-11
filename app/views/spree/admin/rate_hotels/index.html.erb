@@ -13,12 +13,10 @@
     </li>
   </ul>
 <% end %>
-
 <%
-  # TODO: sacar los valores estos de los option_types
-    room_options           = [["Standard", 1], ["Master Suite", 2], ["Junior Suite", 3]]
+    room_options           = get_option_values('room')
     room_options_with_null = [['-', nil]] + room_options
-    plan_options           = [["CP", 1], ["AP", 2], ["MAP", 3]]
+    plan_options           = get_option_values('plan')
     plan_options_with_null = [['-', nil]] + plan_options
     delete_options = {:no_text => true, :class => 'delete-resource', :data => {:confirm => Spree.t(:are_you_sure), :action => :remove}}
     delete_options2 = {:no_text => true, :data => {:confirm => Spree.t(:are_you_sure), :method => :post}}
@@ -45,6 +43,7 @@
       <th title="<%= Spree.t(:extra_adult)%>"> <%= 'AE' %> </th>
       <th title="<%= Spree.t(:first_child)%>"> <%= '1C' %> </th>
       <th title="<%= Spree.t(:second_child)%>"> <%= '2C' %> </th>
+      <th title="<%= Spree.t(:extra_child)%>"> <%= 'CE' %> </th>
       <th title="<%= Spree.t(:max_adults)%>"> <%= 'MA' %> </th>
       <th title="<%= Spree.t(:max_children)%>"> <%= 'MC' %> </th>
     <th class="actions"></th>
@@ -68,8 +67,9 @@
       <td><%= text_field_tag "rate_adults_extra_#{id}", rate_hotel.adults_extra, :class => 'small' %></td>
       <td><%= text_field_tag "rate_children_one_#{id}", rate_hotel.children_one, :class => 'small' %></td>
       <td><%= text_field_tag "rate_children_two_#{id}", rate_hotel.children_two, :class => 'small' %></td>
+      <td><%= text_field_tag "rate_children_extra_#{id}", rate_hotel.children_extra, :class => 'small' %></td>
       <td><%= text_field_tag "rate_max_adults_#{id}", rate_hotel.max_adults, :class => 'small' %></td>
-      <td><%= text_field_tag "rate_max_chilndren_#{id}", rate_hotel.max_children, :class => 'small' %></td>
+      <td><%= text_field_tag "rate_max_children_#{id}", rate_hotel.max_children, :class => 'small' %></td>
       <td class="actions">
         <%= link_to_with_icon 'icon-trash', '', @delete_url, delete_options %>
     </tr>
@@ -122,5 +122,3 @@
 </div>
 
 <% end %>
-
-

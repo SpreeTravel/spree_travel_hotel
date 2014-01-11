@@ -1,3 +1,37 @@
 /*
  *= require store/spree_frontend
 */
+
+#hotel{
+    float: left;
+}
+
+span.stars-1{
+    background-image: url('stars.png');
+    /*background-position: 71px 73px;*/
+}
+
+span.stars-2{
+    background-image: url('stars.png');
+    /*background-position: 71px 73px;*/
+}
+
+span.stars-3{
+    background-image: url('stars.png');
+    /*background-position: 71px 73px;*/
+}
+
+span.stars-4{
+    background-image: url('stars.png');
+    /*background-position: 71px 73px;*/
+}
+
+span.stars-5{
+    background-image: url('stars.png');
+    /*background-position: 71px 73px;*/
+}
+
+
+.search_date, .search_pax, .search_meal{
+    list-style-type: none;
+}

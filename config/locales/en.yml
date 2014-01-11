@@ -3,11 +3,16 @@
 
 en:
   spree:
+    hotel: Hotel
     simple_room: Simple Room
     double_room: Double Room
     triple_room: Triple Room
     extra_adult: Adult Extra
+    extra_child: Child Extra
     first_child: First Child
     second_child: Second Child
     max_adults: Max Adults
     max_children: Max Children
+    adults: Adults
+    children: Children
+
