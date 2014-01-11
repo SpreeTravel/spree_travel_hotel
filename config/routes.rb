@@ -2,6 +2,7 @@ Spree::Core::Engine.routes.draw do
   namespace :admin do
     resources :product_hotels
   end
+  resources :product_hotels
 
   match 'admin/products/:permalink/rate_hotels' => 'admin/rate_hotels#index', :via => :get, :as => :hotel_rates
   match 'admin/products/:permalink/update_rate' => 'admin/rate_hotels#update', :via => :post, :as => :update_hotel_rate
