@@ -37,7 +37,6 @@ module Spree
       calculator_class.calculate_price(:product => self, :context => context)
     end
 
-    #TODO esto debe ir mejor en un helper si es para la vista
     def rooms
       self.variants.map{|v| v.option_values.map(&:name).select{|ov| ov.starts_with?('room')}}.flatten.uniq
     end
@@ -52,6 +51,23 @@ module Spree
 
     def children
       self.variants.map{|v| v.option_values.map(&:name).select{|ov| ov.starts_with?('child')}}.flatten.uniq
+    end
+
+    def base_price
+      variants = self.variants.select{|v| v.adults == 2 && v.children == 0}
+      if self.rooms.include?('room-standard')
+        room = 'room-standard'
+      else
+        room = self.rooms.first
+      end
+      variants = variants.select{|v| v.room == room}
+      if self.plans.include?('plan-all-inclusive')
+        plan = 'plan-all-inclusive'
+      else
+        plan = 'plan-continental-breakfast'
+      end
+      variants = variants.select{|v| v.plan == plan}
+      variants.order(:start_date).last.price
     end
 
   end
