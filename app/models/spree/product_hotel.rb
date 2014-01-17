@@ -37,20 +37,12 @@ module Spree
       calculator_class.calculate_price(:product => self, :context => context)
     end
 
-    def rooms
+    def rooms_options
       self.variants.map{|v| v.option_values.map(&:name).select{|ov| ov.starts_with?('room')}}.flatten.uniq
     end
 
-    def plans
+    def plans_options
       self.variants.map{|v| v.option_values.map(&:name).select{|ov| ov.starts_with?('plan')}}.flatten.uniq
-    end
-
-    def adults
-      self.variants.map{|v| v.option_values.map(&:name).select{|ov| ov.starts_with?('adult')}}.flatten.uniq
-    end
-
-    def children
-      self.variants.map{|v| v.option_values.map(&:name).select{|ov| ov.starts_with?('child')}}.flatten.uniq
     end
 
     def base_price
