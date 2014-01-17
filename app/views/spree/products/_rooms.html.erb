@@ -1,6 +1,6 @@
 <table class="index" id='listing_hotels_rooms' data-hook>
   <tbody>
-  <% rooms(@product).each do |room| %>
+  <% @product.rooms_options.each do |room| %>
     <tr id="<%#= spree_dom_id rate_hotel %>" data-hook="hotel_room_row" class="<%= cycle('odd', 'even')%>">
       <td><%= room.gsub('-', ' ').capitalize  %></td>
       <td><%= render :partial => 'cart_form' %></td>
@@ -10,6 +10,3 @@
   <% end %>
   </tbody>
 </table>
-
-
-        
