@@ -1,2 +1,2 @@
-<!-- insert_bottom 'ul#search_box' -->
-<li class=""><a data-toggle="tab" href="#hotel"><%= Spree.t(:hotel) %></a></li>
+<!-- insert_bottom 'ul#search_box_tabs' -->
+<li class="active"><a data-toggle="tab" href="#hotel"><%= Spree.t(:hotel) %></a></li>

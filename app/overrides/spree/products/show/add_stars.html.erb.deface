@@ -1,2 +1,2 @@
 <!-- insert_bottom 'h1' -->
-<span class="stars-#{<%#stars(@product)%>}"></span>
+<span class="stars-1"></span>

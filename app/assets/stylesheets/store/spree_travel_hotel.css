@@ -1,5 +1,6 @@
 /*
  *= require store/spree_frontend
+ *= require store/hotel_search_tab
 */
 
 #hotel{
@@ -8,30 +9,41 @@
 
 span.stars-1{
     background-image: url('stars.png');
-    /*background-position: 71px 73px;*/
+    background-position: 0px 20px;
+    width: 73px;
+    height: 16px;
+    float: left;
 }
 
 span.stars-2{
     background-image: url('stars.png');
-    /*background-position: 71px 73px;*/
+    background-position: 0px 33px;
+    width: 73px;
+    height: 15px;
+    float: left;    
 }
 
 span.stars-3{
     background-image: url('stars.png');
-    /*background-position: 71px 73px;*/
+    background-position: 0px 46px;
+    width: 73px;
+    height: 15px;
+    float: left;    
 }
 
 span.stars-4{
     background-image: url('stars.png');
-    /*background-position: 71px 73px;*/
+    background-position: 0px 59px;
+    width: 73px;
+    height: 15px;
+    float: left;    
 }
 
 span.stars-5{
     background-image: url('stars.png');
-    /*background-position: 71px 73px;*/
+    background-position: 0px 0px;
+    width: 73px;
+    height: 16px;
+    float: left;    
 }
 
-
-.search_date, .search_pax, .search_meal{
-    list-style-type: none;
-}
