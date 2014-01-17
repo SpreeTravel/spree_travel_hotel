@@ -1,0 +1,3 @@
+<!-- insert_bottom 'div.product-title a' 
+     sequence :after => "change_product_index_partial"  -->
+<span class="stars-1"></span>

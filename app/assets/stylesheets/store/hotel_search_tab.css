@@ -1,0 +1,18 @@
+.search_date, .search_pax, .search_meal{
+    list-style: none;
+}
+
+ul.search_pax li{
+  display: inline;
+  float: left;
+  margin-right: 30px;   
+}
+
+input#destination{
+  margin-top: 15px;
+}
+
+input#checkin, input#checkout{
+  margin-top: 15px;
+}
+
