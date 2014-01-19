@@ -2,13 +2,13 @@
 <div class="tab-pane fade active in">
   <ul class="search_date columns eight alpha omega">
     <li>
-        <input id="destination" type="text" name="destination" value="<%#= destination %>" onchange="" class="columns seven " />
+        <input id="destination" type="text" name="destination" value="<%#= destination %>" onchange="" class="columns seven" placeholder="Destinations"/>
     </li>
     <li>
-        <input id="checkin" type="text" name="check_in_accommodation" value="<%#= check_in_accommodation %>" onchange="" class="datepicker columns three " />
+        <input id="checkin" type="text" name="check_in_accommodation" value="<%#= check_in_accommodation %>" onchange="" class="datepicker columns three" placeholder="CheckIn" />
     </li>
     <li>
-        <input id="checkout" type="text" name="check_out_accommodation" value="<%#= check_out_accommodation %>" onchange="" class="datepicker columns three " />
+        <input id="checkout" type="text" name="check_out_accommodation" value="<%#= check_out_accommodation %>" onchange="" class="datepicker columns three" placeholder="CheckOut"/>
     </li>
   </ul>
 
