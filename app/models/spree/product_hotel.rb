@@ -29,10 +29,6 @@ module Spree
       self.exceptions.map {|e| e.get_option_values}
     end
 
-    def default_prototype
-      Spree::Prototype.find_by_name('Hotel')
-    end
-
     def calculate_price(context)
       calculator_class.calculate_price(:product => self, :context => context)
     end

@@ -21,6 +21,8 @@ module SpreeTravelHotel
         SpreeTravelHotel::Data.load_data("option_types")
         SpreeTravelHotel::Data.load_data("option_values")
         SpreeTravelHotel::Data.load_data("prototypes")
+        SpreeTravelHotel::Data.load_data("taxonomies")
+        SpreeTravelHotel::Data.load_data("taxons")
       end
 
       config.to_prepare &method(:activate).to_proc

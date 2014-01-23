@@ -26,6 +26,11 @@ module SpreeTravelHotel
           puts 'Skipping rake db:migrate, don\'t forget to run it!'
         end
       end
+
+      def load_data
+        run 'bundle exec rake db:load_hotels_data'
+      end
+
     end
   end
 end
