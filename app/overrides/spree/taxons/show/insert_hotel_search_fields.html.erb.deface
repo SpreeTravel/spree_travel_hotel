@@ -2,7 +2,7 @@
 <div class="tab-pane fade active in">
   <ul class="search_date columns eight alpha omega">
     <li>
-        <%= text_field_tag :keywords, '', :placeholder => 'Keywords', :class=> "columns seven" %>
+        <%= text_field_tag :keywords, params[:keywords], :placeholder => 'Keywords', :class=> "columns seven" %>
     </li>
     <li>
         <%= text_field_tag :destination, '', :placeholder => "Destinations", :class=> "columns seven" %>
@@ -11,7 +11,7 @@
         <%= text_field_tag :checkin, '', :placeholder => "CheckIn", :class=> "datepicker columns three" %>
     </li>
     <li>
-        <%= text_field_tag :checkout, '', :placeholder => "CheckOut", :class=> "datepicker columns three" %>
+        <%= text_field_tag :checkin, '', :placeholder => "CheckOut", :class=> "datepicker columns three" %>
     </li>
   </ul>
 
