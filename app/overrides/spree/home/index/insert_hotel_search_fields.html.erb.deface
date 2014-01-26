@@ -1,21 +1,21 @@
 <!-- insert_bottom 'div#tabcontent' -->
 <div class="tab-pane fade active in">
-  <ul class="search_date columns eight alpha omega">
+  <ul class="search_date columns twelve alpha omega">
     <li>
-        <%= text_field_tag :keywords, '', :placeholder => 'Keywords', :class=> "columns seven" %>
+        <%= text_field_tag :keywords, '', :placeholder => 'Keywords', :class=> "columns eleven" %>
     </li>
     <li>
-        <%= text_field_tag :destination, '', :placeholder => "Destinations", :class=> "columns seven" %>
+        <%= text_field_tag :destination, '', :placeholder => "Destinations", :class=> "columns eleven" %>
     </li>
     <li>        
-        <%= text_field_tag :checkin, '', :placeholder => "CheckIn", :class=> "datepicker columns three" %>
+        <%= text_field_tag :checkin, '', :placeholder => "CheckIn", :class=> "datepicker columns five" %>
     </li>
     <li>
-        <%= text_field_tag :checkout, '', :placeholder => "CheckOut", :class=> "datepicker columns three" %>
+        <%= text_field_tag :checkout, '', :placeholder => "CheckOut", :class=> "datepicker columns five" %>
     </li>
   </ul>
 
- <ul class="search_pax columns eight">
+ <ul class="search_pax columns twelve">
   <li>
     <label id="adults_hotel_label"> <%= Spree.t('adults') %><br>
       <%= select_tag :adults_hotel, options_for_select(get_option_values('adult')) %>
