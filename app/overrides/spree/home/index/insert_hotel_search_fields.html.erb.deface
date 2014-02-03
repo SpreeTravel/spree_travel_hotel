@@ -2,6 +2,7 @@
 <div class="tab-pane fade active in">
   <ul class="search_date columns twelve alpha omega">
     <li>
+<<<<<<< HEAD
         <%= text_field_tag :keywords, '', :placeholder => 'Keywords', :class=> "columns eleven" %>
     </li>
     <li>
@@ -12,26 +13,42 @@
     </li>
     <li>
         <%= text_field_tag :checkout, '', :placeholder => "CheckOut", :class=> "datepicker columns five" %>
+=======
+        <%= text_field_tag :keywords, params[:keywords], :placeholder => 'Keywords', :class=> "columns seven" %>
+    </li>
+    <li>
+        <%= text_field_tag :destination, params[:destination], :placeholder => "Destinations", :class=> "columns seven" %>
+    </li>
+    <li>
+        <%= text_field_tag :start_date, params[:start_date], :placeholder => "CheckIn", :class=> "datepicker columns three" %>
+    </li>
+    <li>
+        <%= text_field_tag :end_date, params[:end_date], :placeholder => "CheckOut", :class=> "datepicker columns three" %>
+>>>>>>> ccf2350c1715554c32e5e3526e48e30bb8154c06
     </li>
   </ul>
 
  <ul class="search_pax columns twelve">
   <li>
     <label id="adults_hotel_label"> <%= Spree.t('adults') %><br>
-      <%= select_tag :adults_hotel, options_for_select(get_option_values('adult')) %>
+      <%= select_tag :adult, options_for_select(get_option_values('adult')) %>
     </label>
   </li>
   <li>
     <label id="children_hotel_label"><%= Spree.t('children')%><br>
-       <%= select_tag :children_hotel, options_for_select(get_option_values('child')) %>
+       <%= select_tag :child, options_for_select(get_option_values('child')) %>
     </label>
   </li>
   <li>
-    <label id="meal_plan_hotel_label"><%= t('meal_plan')%> <br>
-      <%= select_tag :meal_plan_hotel, options_for_select(get_option_values('plan')) %>
+    <label id="room_hotel_label"><%= t('room')%> <br>
+      <%= select_tag :room, options_for_select(get_option_values('room')) %>
+    </label>
+  </li>
+  <li>
+    <label id="meal_plan_hotel_label"><%= t('plan')%> <br>
+      <%= select_tag :plan, options_for_select(get_option_values('plan')) %>
     </label>
   </li>
  </ul>
-  
-</div>
 
+</div>

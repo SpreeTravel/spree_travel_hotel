@@ -2,9 +2,8 @@ module Spree
   class RateHotel < ActiveRecord::Base
     belongs_to :product, :class_name => 'Spree::Product', :foreign_key => :product_id
     #validate :validate_overlapping
-    
+
     def generate_variants
-      # TODO: falta evaluar excepciones
       max_adults = self.max_adults || 0
       max_children = self.max_children || 0
       (1..max_adults).each do |adult|
@@ -57,15 +56,14 @@ module Spree
 
     def create_or_update_variant(product, price, option_values)
       lsku = (option_values.map(&:name)).join('-')
-      variant = Spree::Variant.where(:product_id => product_id).select{|v| v.long_sku == lsku}.first
+      variant = Spree::VariantHotel.where(:product_id => product.id).select{|v| v.long_sku == lsku}.first
       if variant.nil?
-        variant = Spree::Variant.create(
-            :product_id => product_id,
-            # TODO: generar una secuencia para el sku
-            :price => price
+        variant = Spree::VariantHotel.create(
+             # TODO: generar una secuencia para el sku
+            :product_id => product.id,
+            :price => price,
+            :option_values => option_values
         )
-        variant.option_values = option_values
-        variant.save
       else
         variant.price = price
         variant.save
