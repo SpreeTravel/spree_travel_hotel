@@ -36,8 +36,8 @@ module Spree
 
     def get_option_values(adult, child)
       option_values = []
-      option_values << OptionValue.find_or_create(self.init_date.to_s, self.init_date.to_s, 'start-season')
-      option_values << OptionValue.find_or_create(self.end_date.to_s, self.end_date.to_s, 'end-season')
+      option_values << OptionValue.find_or_create(self.init_date.to_s, self.init_date.to_s, 'start_date')
+      option_values << OptionValue.find_or_create(self.end_date.to_s, self.end_date.to_s, 'end_date')
       option_values << OptionValue.find(self.room_id)
       option_values << OptionValue.find(self.plan_id)
       option_values << OptionValue.find_or_create("adult-#{adult}", adult.to_s, 'adult')
