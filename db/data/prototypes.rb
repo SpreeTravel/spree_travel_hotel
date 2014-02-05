@@ -1,7 +1,7 @@
 prototypes = [
     {
         :name => "Hotel",
-        :option_types => ["start-season", "end-season", "room", "plan", "adult", "child"]
+        :option_types => ["start_date", "end_date", "room", "plan", "adult", "child"]
     }
 ]
 
