@@ -36,7 +36,7 @@ module Spree
 
     def get_option_values(adult, child)
       option_values = []
-      option_values << OptionValue.find_or_create(self.init_date.to_s, self.init_date.to_s, 'start_date')
+      option_values << OptionValue.find_or_create(self.start_date.to_s, self.start_date.to_s, 'start_date')
       option_values << OptionValue.find_or_create(self.end_date.to_s, self.end_date.to_s, 'end_date')
       option_values << OptionValue.find(self.room_id)
       option_values << OptionValue.find(self.plan_id)
@@ -49,7 +49,7 @@ module Spree
       # TODO: hacer algo para que el get_option_values_in_exception
       # se llame una sola vez en un generate_variants
       self.product.get_option_values_in_exception.each do |ove|
-        return true if (option_values & ove) == option_values
+        return true if (option_values & ove) == ove
       end
       return false
     end
@@ -71,7 +71,7 @@ module Spree
     end
 
     def validate_overlapping
-      # TODO: agregar init_date y end_date
+      # TODO: agregar start_date y end_date
       exist = Spree::RateHotel.where("id != ? and room_id = ? and plan_id = ?", [self.id, self.room_id, self.plan_id]).first
       if !exist.nil?
         errors.add(:base, 'Rate Hotel Overlapping')

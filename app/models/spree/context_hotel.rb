@@ -9,12 +9,12 @@ module Spree
       OptionValue.where(:name => 'plan-continental-breakfast').first.id
     end
 
-    def self.default_init_date
+    def self.default_start_date
       Time.now.to_date
     end
 
     def self.default_end_date
-      self.default_init_date + 2
+      self.default_start_date + 2
     end
 
     def self.default_adults
@@ -35,8 +35,8 @@ module Spree
       pod(@params[:plan_id], ContextHotel.default_plan_id)
     end
 
-    def init_date
-      pod(@params[:init_date], ContextHotel.default_init_date)
+    def start_date
+      pod(@params[:start_date], ContextHotel.default_start_date)
     end
 
     def end_date

@@ -3,6 +3,8 @@ module Spree
 
     def self.get_options_to_search
       # TODO: poner un metodo similar en Variant y llamar al super primero
+      # TODO: la fecha tiene que ser mayor que la fecha de inicio y menor que
+      # la fecha fin
       [
         {:option => 'room', :operator => '='},
         {:option => 'plan', :operator => '='},
