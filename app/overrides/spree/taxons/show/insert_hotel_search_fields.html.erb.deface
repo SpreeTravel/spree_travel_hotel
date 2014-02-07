@@ -2,26 +2,16 @@
 <div class="tab-pane fade active in">
   <ul class="search_date columns twelve alpha omega">
     <li>
-        <%= text_field_tag :keywords, '', :placeholder => 'Keywords', :class=> "columns eleven" %>
+        <%= text_field_tag :keywords, params[:keywords], :placeholder => 'Keywords', :class=> "columns eleven" %>
     </li>
     <li>
-<<<<<<< HEAD
-        <%= text_field_tag :destination, '', :placeholder => "Destinations", :class=> "columns eleven" %>
-    </li>
-    <li>        
-        <%= text_field_tag :checkin, '', :placeholder => "CheckIn", :class=> "datepicker columns five" %>
+        <%= text_field_tag :destination, params[:destination], :placeholder => "Destinations", :class=> "columns eleven" %>
     </li>
     <li>
-        <%= text_field_tag :checkout, '', :placeholder => "CheckOut", :class=> "datepicker columns five" %>
-=======
-        <%= text_field_tag :destination, params[:destination], :placeholder => "Destinations", :class=> "columns seven" %>
+        <%= text_field_tag :checkin, params[:checkin], :placeholder => "Check In", :class=> "datepicker columns five" %>
     </li>
     <li>
-        <%= text_field_tag :start_date, params[:start_date], :placeholder => "CheckIn", :class=> "datepicker columns three" %>
-    </li>
-    <li>
-        <%= text_field_tag :end_date, params[:end_date], :placeholder => "CheckOut", :class=> "datepicker columns three" %>
->>>>>>> ccf2350c1715554c32e5e3526e48e30bb8154c06
+        <%= text_field_tag :checkout, params[:checkout], :placeholder => "Check Out", :class=> "datepicker columns five" %>
     </li>
   </ul>
 
