@@ -18,22 +18,22 @@
  <ul class="search_pax columns twelve">
   <li>
     <label id="adults_hotel_label"> <%= Spree.t('adults') %><br>
-      <%= select_tag :adult, options_for_select(get_option_values('adult')) %>
+      <%= select_tag :adult, options_for_select(get_option_values('adult'), params[:adult]) %>
     </label>
   </li>
   <li>
     <label id="children_hotel_label"><%= Spree.t('children')%><br>
-       <%= select_tag :child, options_for_select(get_option_values('child')) %>
+       <%= select_tag :child, options_for_select(get_option_values('child'), params[:child]) %>
     </label>
   </li>
   <li>
     <label id="room_hotel_label"><%= t('room')%> <br>
-      <%= select_tag :room, options_for_select(get_option_values('room')) %>
+      <%= select_tag :room, options_for_select(get_option_values('room'), params[:room]) %>
     </label>
   </li>
   <li>
     <label id="meal_plan_hotel_label"><%= t('plan')%> <br>
-      <%= select_tag :plan, options_for_select(get_option_values('plan')) %>
+      <%= select_tag :plan, options_for_select(get_option_values('plan'), params[:plan]) %>
     </label>
   </li>
  </ul>

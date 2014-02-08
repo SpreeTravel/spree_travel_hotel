@@ -22,17 +22,15 @@ module Spree
       prices
     end
 
-    def self.calculate_price(options = {})
-      product_id = options[:product_id]
-      params = options[:params]
-      if params[:start_date] && params[:end_date]
+    def self.calculate_price(params = {})
+      variants = Spree::Variant.with_option_values(params)
+      return [0.0] unless variants
+
+      prices = variants.map {|v| v.price.to_f}.sort
+      if !params[:start_date].blank? && !params[:end_date].blank?
         duration = params[:end_date] - params[:start_date] + 1
-      else
-        duration = nil
+        prices = prices.map {|p| p * duration}
       end
-      variants = Spree::Variant.with_option_values(params, product_id)
-      prices = variants.pluck(:price).sort
-      prices = prices.map {|p| p * duration } if duration
       prices
     end
 
