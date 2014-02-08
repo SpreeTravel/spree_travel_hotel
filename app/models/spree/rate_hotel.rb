@@ -46,8 +46,7 @@ module Spree
     end
 
     def is_an_exception(option_values)
-      # TODO: hacer algo para que el get_option_values_in_exception
-      # se llame una sola vez en un generate_variants
+      # TODO: verificar si rails cachea la consulta o no
       self.product.get_option_values_in_exception.each do |ove|
         return true if (option_values & ove) == ove
       end
@@ -55,11 +54,11 @@ module Spree
     end
 
     def create_or_update_variant(product, price, option_values)
-      lsku = (option_values.map(&:name)).join('-')
-      variant = Spree::VariantHotel.where(:product_id => product.id).select{|v| v.long_sku == lsku}.first
+      sku = product.sku + '-' + option_values.map{|x| x.id.to_s}.join('0')
+      variant = Spree::VariantHotel.where(:product_id => product.id, :sku => sku).first
       if variant.nil?
         variant = Spree::VariantHotel.create(
-             # TODO: generar una secuencia para el sku
+            :sku => sku,
             :product_id => product.id,
             :price => price,
             :option_values => option_values

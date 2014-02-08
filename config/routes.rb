@@ -11,7 +11,6 @@ Spree::Core::Engine.routes.draw do
 
   match 'admin/products/:permalink/new_exception' => 'admin/rate_hotels#new_exception', :via => :get, :as => :new_hotel_exception
   match 'admin/products/:permalink/destroy_exception/:id' => 'admin/rate_hotels#destroy_exception', :via => :post, :as => :destroy_hotel_exception
-  match 'admin/products/:permalink/generate_combinations' => 'admin/rate_hotels#generate_combinations', :via => :get, :as => :generate_hotel_combinations
+  match 'admin/products/:permalink/generate_variants' => 'admin/rate_hotels#generate_variants', :via => :get, :as => :generate_hotel_variants
 
-  match 'admin/products/:permalink/combination_hotels' => 'admin/rate_hotels#combinations', :via => :get, :as => :hotel_combinations
 end

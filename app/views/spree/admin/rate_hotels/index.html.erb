@@ -9,7 +9,7 @@
     <li>
     <%= button_link_to Spree.t(:new_rate), new_hotel_rate_path(:permalink => params[:permalink]), :icon => 'icon-plus', :id => 'admin_new_rate_hotel_link' %>
     <%= button_link_to Spree.t(:new_exception), new_hotel_exception_path(:permalink => params[:permalink]), :icon => 'icon-plus', :id => 'admin_new_exception_hotel_link' %>
-    <%= button_link_to Spree.t(:generate), generate_hotel_combinations_path(:permalink => params[:permalink]), :id => 'admin_generate_hotel_combinations_link' %>
+    <%= button_link_to Spree.t(:generate), generate_hotel_variants_path(:permalink => params[:permalink]), :id => 'admin_generate_hotel_variants_link' %>
     </li>
   </ul>
 <% end %>

@@ -77,10 +77,10 @@ module Spree
         redirect_to hotel_rates_path(permalink)
       end
 
-      def generate_combinations
+      def generate_variants
         permalink = params[:permalink]
         product = Spree::Product.find_by_permalink(permalink)
-        product.generate_combinations
+        product.generate_variants
         redirect_to hotel_rates_path(permalink)
       end
 
