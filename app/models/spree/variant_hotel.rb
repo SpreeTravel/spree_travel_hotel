@@ -10,8 +10,8 @@ module Spree
         {:option => 'plan', :operator => '='},
         {:option => 'adult', :operator => '='},
         {:option => 'child', :operator => '='},
-        {:option => 'start_end', :operator => '>='},
-        {:option => 'end_date', :operator => '<='},
+        {:option => 'start_date', :operator => '<='},
+        {:option => 'end_date', :operator => '>='},
       ]
     end
 

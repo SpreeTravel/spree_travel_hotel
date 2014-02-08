@@ -8,10 +8,10 @@
         <%= text_field_tag :destination, params[:destination], :placeholder => "Destinations", :class=> "columns eleven" %>
     </li>
     <li>
-        <%= text_field_tag :checkin, params[:checkin], :placeholder => "Check In", :class=> "datepicker columns five" %>
+        <%= text_field_tag :start_date, params[:start_date], :placeholder => "Check In", :class=> "datepicker columns five" %>
     </li>
     <li>
-        <%= text_field_tag :checkout, params[:checkout], :placeholder => "Check Out", :class=> "datepicker columns five" %>
+        <%= text_field_tag :end_date, params[:end_date], :placeholder => "Check Out", :class=> "datepicker columns five" %>
     </li>
   </ul>
 
