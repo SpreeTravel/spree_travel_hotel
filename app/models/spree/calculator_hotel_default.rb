@@ -2,7 +2,7 @@ module Spree
   class CalculatorHotelDefault < TravelCalculator
 
     # TODO: calcular bien cada dia en que temporada cae
-    def self.calculate_price(options = {})
+    def self.calculate_price_pqr(options = {})
       product = options[:product]
       context = options[:context]
       variants   = product.variants
@@ -21,5 +21,20 @@ module Spree
       prices = prices.map {|p| p * duration } if duration
       prices
     end
+
+    def self.calculate_price(options = {})
+      product_id = options[:product_id]
+      params = options[:params]
+      if params[:start_date] && params[:end_date]
+        duration = params[:end_date] - params[:start_date] + 1
+      else
+        duration = nil
+      end
+      variants = Spree::Variant.with_option_values(params, product_id)
+      prices = variants.pluck(:price).sort
+      prices = prices.map {|p| p * duration } if duration
+      prices
+    end
+
   end
 end
