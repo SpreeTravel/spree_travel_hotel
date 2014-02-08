@@ -36,6 +36,11 @@
       <%= select_tag :plan, options_for_select(get_option_values('plan'), params[:plan]) %>
     </label>
   </li>
+  <li>
+    <label id="with_price_label"><%= t('show_only_with_price')%> <br>
+      <input type="checkbox" id="with_price" name="with_price"/>
+    </label>
+  </li>
  </ul>
 
 </div>
