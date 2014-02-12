@@ -29,7 +29,7 @@ module Spree
       prices = variants.map {|v| v.price.to_f}.sort
       if !params[:start_date].blank? && !params[:end_date].blank?
         # TODO: esto no resta bien
-        duration = params[:end_date].to_d - params[:start_date].to_d + 1
+        duration = params[:end_date].to_date - params[:start_date].to_date + 1
         prices = prices.map {|p| p * duration}
       end
       prices
