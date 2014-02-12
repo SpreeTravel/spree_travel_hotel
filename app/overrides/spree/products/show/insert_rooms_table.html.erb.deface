@@ -1,2 +1,0 @@
-<!-- insert_after "[data-hook='product_description']" -->
-<%= render partial: 'rooms'%>
