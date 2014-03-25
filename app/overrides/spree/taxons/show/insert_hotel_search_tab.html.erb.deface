@@ -1,2 +1,7 @@
 <!-- insert_bottom 'ul#search_box_tabs' -->
-<li class="active"><a data-toggle="tab" href="#hotel"><%= Spree.t(:hotel) %></a></li>
+<%= content_tag :li, class: "active" do %>
+        <a data-toggle="tab" href="#hotel"><%= Spree.t(:hotel) %></a>
+        <!--#TODO tengo dudas en esto, como ser'ia para mandar el taxon que est'e seleccionado-->
+        <%= hidden_field_tag :taxon, 'hotel' %>
+<%end%>
+

@@ -27,10 +27,6 @@ module SpreeTravelHotel
         end
       end
 
-      def load_data
-        run 'bundle exec rake db:load_hotels_data'
-      end
-
     end
   end
 end

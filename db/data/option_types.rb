@@ -1,12 +1,12 @@
 Spree::OptionType.create!([
   {
-    :name => "start-season",
-    :presentation => "Start Season",
+    :name => "start_date",
+    :presentation => "Start Date",
     :position => 1
   },
   {
-    :name => "end-season",
-    :presentation => "End Season",
+    :name => "end_date",
+    :presentation => "End Date",
     :position => 2
   },
   {

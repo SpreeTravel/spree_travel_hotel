@@ -16,3 +16,7 @@ Spree::Travel::Accommodation
   - check in
   - check out
   - meal plan
+
+
+TODO
+HAcer un migration en hotel que cree un nuevo taxon dentro de la taxonomía, categoría. 

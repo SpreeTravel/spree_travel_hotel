@@ -2,48 +2,43 @@
 <div class="tab-pane fade active in">
   <ul class="search_date columns twelve alpha omega">
     <li>
-        <%= text_field_tag :keywords, '', :placeholder => 'Keywords', :class=> "columns eleven" %>
+        <%= text_field_tag :keywords, params[:keywords], :placeholder => 'Keywords', :class=> "columns eleven" %>
     </li>
     <li>
-<<<<<<< HEAD
-        <%= text_field_tag :destination, '', :placeholder => "Destinations", :class=> "columns eleven" %>
-    </li>
-    <li>        
-        <%= text_field_tag :checkin, '', :placeholder => "CheckIn", :class=> "datepicker columns five" %>
+        <%= text_field_tag :destination, params[:destination], :placeholder => "Destinations", :class=> "columns eleven" %>
     </li>
     <li>
-        <%= text_field_tag :checkout, '', :placeholder => "CheckOut", :class=> "datepicker columns five" %>
-=======
-        <%= text_field_tag :destination, params[:destination], :placeholder => "Destinations", :class=> "columns seven" %>
+        <%= text_field_tag :start_date, params[:start_date], :placeholder => "Check In", :class=> "datepicker columns five" %>
     </li>
     <li>
-        <%= text_field_tag :start_date, params[:start_date], :placeholder => "CheckIn", :class=> "datepicker columns three" %>
-    </li>
-    <li>
-        <%= text_field_tag :end_date, params[:end_date], :placeholder => "CheckOut", :class=> "datepicker columns three" %>
->>>>>>> ccf2350c1715554c32e5e3526e48e30bb8154c06
+        <%= text_field_tag :end_date, params[:end_date], :placeholder => "Check Out", :class=> "datepicker columns five" %>
     </li>
   </ul>
 
  <ul class="search_pax columns twelve">
   <li>
     <label id="adults_hotel_label"> <%= Spree.t('adults') %><br>
-      <%= select_tag :adult, options_for_select(get_option_values('adult')) %>
+      <%= select_tag :adult, options_for_select(get_option_values('adult'), params[:adult]) %>
     </label>
   </li>
   <li>
     <label id="children_hotel_label"><%= Spree.t('children')%><br>
-       <%= select_tag :child, options_for_select(get_option_values('child')) %>
+       <%= select_tag :child, options_for_select(get_option_values('child'), params[:child]) %>
     </label>
   </li>
   <li>
     <label id="room_hotel_label"><%= t('room')%> <br>
-      <%= select_tag :room, options_for_select(get_option_values('room')) %>
+      <%= select_tag :room, options_for_select(get_option_values('room'), params[:room]) %>
     </label>
   </li>
   <li>
     <label id="meal_plan_hotel_label"><%= t('plan')%> <br>
-      <%= select_tag :plan, options_for_select(get_option_values('plan')) %>
+      <%= select_tag :plan, options_for_select(get_option_values('plan'), params[:plan]) %>
+    </label>
+  </li>
+  <li>
+    <label id="with_price_label"><%= t('show_only_with_price')%> <br>
+      <input type="checkbox" id="with_price" name="with_price"/>
     </label>
   </li>
  </ul>

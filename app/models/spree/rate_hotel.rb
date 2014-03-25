@@ -36,8 +36,8 @@ module Spree
 
     def get_option_values(adult, child)
       option_values = []
-      option_values << OptionValue.find_or_create(self.init_date.to_s, self.init_date.to_s, 'start-season')
-      option_values << OptionValue.find_or_create(self.end_date.to_s, self.end_date.to_s, 'end-season')
+      option_values << OptionValue.find_or_create(self.start_date.to_s, self.start_date.to_s, 'start_date')
+      option_values << OptionValue.find_or_create(self.end_date.to_s, self.end_date.to_s, 'end_date')
       option_values << OptionValue.find(self.room_id)
       option_values << OptionValue.find(self.plan_id)
       option_values << OptionValue.find_or_create("adult-#{adult}", adult.to_s, 'adult')
@@ -46,20 +46,19 @@ module Spree
     end
 
     def is_an_exception(option_values)
-      # TODO: hacer algo para que el get_option_values_in_exception
-      # se llame una sola vez en un generate_variants
+      # TODO: verificar si rails cachea la consulta o no
       self.product.get_option_values_in_exception.each do |ove|
-        return true if (option_values & ove) == option_values
+        return true if (option_values & ove) == ove
       end
       return false
     end
 
     def create_or_update_variant(product, price, option_values)
-      lsku = (option_values.map(&:name)).join('-')
-      variant = Spree::VariantHotel.where(:product_id => product.id).select{|v| v.long_sku == lsku}.first
+      sku = product.sku + '-' + option_values.map{|x| x.id.to_s}.join('0')
+      variant = Spree::VariantHotel.where(:product_id => product.id, :sku => sku).first
       if variant.nil?
         variant = Spree::VariantHotel.create(
-             # TODO: generar una secuencia para el sku
+            :sku => sku,
             :product_id => product.id,
             :price => price,
             :option_values => option_values
@@ -71,7 +70,7 @@ module Spree
     end
 
     def validate_overlapping
-      # TODO: agregar init_date y end_date
+      # TODO: agregar start_date y end_date
       exist = Spree::RateHotel.where("id != ? and room_id = ? and plan_id = ?", [self.id, self.room_id, self.plan_id]).first
       if !exist.nil?
         errors.add(:base, 'Rate Hotel Overlapping')

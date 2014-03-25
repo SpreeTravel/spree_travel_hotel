@@ -49,7 +49,7 @@ module Spree
           product.rates.each do |rate|
             rate.room_id      = params["rate_room_#{rate.id}"]
             rate.plan_id      = params["rate_plan_#{rate.id}"]
-            rate.init_date    = params["rate_init_date_#{rate.id}"]
+            rate.start_date   = params["rate_start_date_#{rate.id}"]
             rate.end_date     = params["rate_end_date_#{rate.id}"]
             rate.adults_one   = params["rate_adults_one_#{rate.id}"]
             rate.adults_two   = params["rate_adults_two_#{rate.id}"]
@@ -62,12 +62,12 @@ module Spree
             rate.save
           end
           product.exceptions.each do |exception|
-            exception.room_id   = params["exception_room_#{exception.id}"]
-            exception.plan_id   = params["exception_plan_#{exception.id}"]
-            exception.init_date = params["exception_init_date_#{exception.id}"]
-            exception.end_date  = params["exception_end_date_#{exception.id}"]
-            exception.adults    = params["exception_adults_#{exception.id}"]
-            exception.children  = params["exception_children_#{exception.id}"]
+            exception.room_id    = params["exception_room_#{exception.id}"]
+            exception.plan_id    = params["exception_plan_#{exception.id}"]
+            exception.start_date = params["exception_start_date_#{exception.id}"]
+            exception.end_date   = params["exception_end_date_#{exception.id}"]
+            exception.adults     = params["exception_adults_#{exception.id}"]
+            exception.children   = params["exception_children_#{exception.id}"]
             exception.save
           end
           flash[:success] = "Rate for '#{product.name}' updated successfully"
@@ -77,10 +77,10 @@ module Spree
         redirect_to hotel_rates_path(permalink)
       end
 
-      def generate_combinations
+      def generate_variants
         permalink = params[:permalink]
         product = Spree::Product.find_by_permalink(permalink)
-        product.generate_combinations
+        product.generate_variants
         redirect_to hotel_rates_path(permalink)
       end
 

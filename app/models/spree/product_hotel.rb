@@ -9,10 +9,6 @@ module Spree
       RateHotel
     end
 
-    def combination_class
-      CombinationHotel
-    end
-
     def exception_class
       ExceptionHotel
     end
@@ -21,7 +17,7 @@ module Spree
       CalculatorHotelDefault
     end
 
-    def generate_combinations
+    def generate_variants
       self.rates.map {|r| r.generate_variants}
     end
 
