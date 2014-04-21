@@ -1,8 +1,7 @@
+hotel = Spree::ProductType.find_by_name('hotel')
+
 prototypes = [
-    {
-        :name => "Hotel",
-        :option_types => ["start_date", "end_date", "room", "plan", "adult", "child"]
-    }
+    {:name => "Hotel", :option_types => ["room"], :product_type => hotel}
 ]
 
 prototypes.each do |prototype_attrs|
