@@ -7,7 +7,7 @@ module Spree
 
     # TODO: tener en cuenta aqui el maximo de adultos
     def self.get_adult_list(rate, pt_adults)
-      if pt_adults != 0
+      if pt_adults.present?
         [pt_adults]
       else
         [1, 2, 3]
@@ -16,7 +16,7 @@ module Spree
 
     # TODO: tener en cuenta el maximo de ninos y el nino extra
     def self.get_child_list(rate, pt_child)
-      if pt_child != 0
+      if pt_child.present?
         [pt_child]
       else
         [1, 2]
@@ -24,18 +24,13 @@ module Spree
     end
 
     def self.get_rate_price(rate, adults, children)
+      adults = adults.to_i
+      children = children.to_i
       adults_hash = {1 => 'simple', 2 => 'double', 3 =>'triple'}
-      puts "================================================"
-      puts adults
-      puts adults_hash[adults]
       days = pt_end_date - pt_start_date rescue 1
-      puts days
       price = adults * rate.send(adults_hash[adults]).to_f
-      puts price
       price += rate.first_child.to_f if children >= 1
-      puts price
       price += rate.second_child.to_f if children == 2
-      puts price
       price *= days
       price
     end
@@ -51,8 +46,8 @@ module Spree
       # TODO: How to manage if a customer just for fuck enter 1.5 adults
       pt_start_date = params[pt + '_start_date'].to_date if params[pt + '_start_date']
       pt_end_date = params[pt + '_end_date'].to_date if params[pt + '_end_date']
-      pt_adult = params[pt + '_adult'].to_i #if params[pt + '_adult']
-      pt_child = params[pt + '_child'].to_i #if params[pt + '_child']
+      pt_adult = params[pt + '_adult'] #if params[pt + '_adult']
+      pt_child = params[pt + '_child'] #if params[pt + '_child']
       pt_plan = params[pt + '_plan'].to_i if params[pt + '_plan']
       pt_variant = self.calculate_variant(params)
 
@@ -67,6 +62,8 @@ module Spree
         adults_array = self.get_adult_list(r, pt_adult)
         children_array = self.get_child_list(r, pt_child)
         combinations = adults_array.product(children_array)
+        puts "=============================================="
+        puts combinations.inspect
         combinations.each do |ad, ch|
           prices << self.get_rate_price(r, ad, ch)
         end
