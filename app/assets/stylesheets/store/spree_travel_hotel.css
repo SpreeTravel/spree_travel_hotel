@@ -1,5 +1,5 @@
 /*
- *= require store/spree_frontend
+ *= require spree/frontend
  *= require store/hotel_search_tab
 */
 
@@ -20,7 +20,7 @@ span.stars-2{
     background-position: 0px 33px;
     width: 73px;
     height: 15px;
-    float: left;    
+    float: left;
 }
 
 span.stars-3{
@@ -28,7 +28,7 @@ span.stars-3{
     background-position: 0px 46px;
     width: 73px;
     height: 15px;
-    float: left;    
+    float: left;
 }
 
 span.stars-4{
@@ -36,7 +36,7 @@ span.stars-4{
     background-position: 0px 59px;
     width: 73px;
     height: 15px;
-    float: left;    
+    float: left;
 }
 
 span.stars-5{
@@ -44,6 +44,6 @@ span.stars-5{
     background-position: 0px 0px;
     width: 73px;
     height: 16px;
-    float: left;    
+    float: left;
 }
 
