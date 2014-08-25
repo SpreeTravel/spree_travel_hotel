@@ -45,8 +45,8 @@ module Spree
       # TODO: hacer lo mismo que los adultos y ninos pa los demas campos
       product.rates.each do |r|
         next if variant && (variant.id != r.variant_id)
-        next if context.start_date && (context.start_date.to_date < r.start_date.to_date)
-        next if context.end_date && (context.end_date.to_date > r.end_date.to_date)
+        next if context.start_date && (context.start_date.to_date < r.start_date.to_date rescue false)
+        next if context.end_date && (context.end_date.to_date > r.end_date.to_date rescue false)
         next if context.plan && context.plan.to_i != r.plan.to_i
         adults_array = self.get_adult_list(r, context.adult)
         children_array = self.get_child_list(r, context.child)
@@ -54,7 +54,6 @@ module Spree
         combinations.each do |ad, ch|
           prices << self.get_rate_price(r, ad, ch) * days
         end
-
       end
       prices
     end
