@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.description = 'Add hotel logic into spree'
   s.required_ruby_version = '>= 1.9.3'
 
-  s.authors   = ['Pedro Quintero', 'Miguel Sancho', 'Cesar Lage', 'Raul Perez-alejo']
+  s.authors   = ['Pedro Quintero', 'Miguel Sancho', 'Cesar Lage', 'Raul Perez-alejo', 'Alejandro Dustet']
   s.email     = 'pqr@openjaf.com'
   s.homepage  = 'http://github.com/openjaf/spree_travel_hotel'
 
@@ -22,8 +22,6 @@ Gem::Specification.new do |s|
   s.requirements << 'none'
 
   s.add_dependency 'spree_core', '~> ' + versions['spree']
-  s.add_dependency 'spree_auth_devise', '~> ' + versions['spree_auth_devise']
-  #s.add_dependency 'spree_travel_accommodation', '~> ' + versions['spree_travel']
 
   s.add_development_dependency 'capybara', '~> 2.0'
   s.add_development_dependency 'coffee-rails'
