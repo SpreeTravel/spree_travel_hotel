@@ -11,5 +11,5 @@ Spree::ProductType.where(:name => 'hotel').first_or_create(
    :presentation => 'Hotel',
    :rate_option_types => rate_option_types,
    :context_option_types => context_option_types,
-   :variat_option_types => variant_option_types
+   :variant_option_types => variant_option_types
 )
