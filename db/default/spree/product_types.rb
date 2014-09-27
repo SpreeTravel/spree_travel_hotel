@@ -5,7 +5,7 @@ contexts = ['start_date', 'end_date', 'adult', 'child', 'plan']
 context_option_types = contexts.each.map {|c| Spree::OptionType.find_by_name(c)}
 
 variants = ['room']
-varian_option_types = variants.each.map {|v| Spree::OptionType.find_by_name(v)}
+variant_option_types = variants.each.map {|v| Spree::OptionType.find_by_name(v)}
 
 Spree::ProductType.create!(
    :name => 'hotel',
