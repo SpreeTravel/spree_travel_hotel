@@ -1,7 +1,9 @@
+### These are the option types
 room = Spree::OptionType.find_by_name!("room")
 plan = Spree::OptionType.find_by_name!("plan")
 
-Spree::OptionValue.create!([
+### This is the data
+option_values = [
   {:name => "room-standard", :presentation => "Standard", :option_type => room},
   {:name => "room-suite", :presentation => "Suite", :option_type => room},
   {:name => "room-junior-suite", :presentation => "Junior Suite", :option_type => room},
@@ -10,4 +12,11 @@ Spree::OptionValue.create!([
   {:name => "plan-modified-american-plan", :presentation => "MAP", :option_type => plan},
   {:name => "plan-american-plan", :presentation => "AP", :option_type => plan},
   {:name => "plan-all-inclusive", :presentation => "AI", :option_type => plan}
-])
+]
+### Deleting Option Values
+Spree::OptionValue.delete_all
+
+### Creating Option Values
+option_values.each do |ov|
+  Spree::OptionValue.create!(ov)
+end
