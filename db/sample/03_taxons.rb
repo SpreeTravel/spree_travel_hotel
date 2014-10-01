@@ -1,6 +1,6 @@
 ### This is the data
 place = Spree::Taxonomy.find_by_name!("Place")
-things = Spree::Taxonomy.find_by_name!("Things to do")
+category = Spree::Taxonomy.find_by_name!("Category")
 
 taxons = [
   { :name => "Place", :taxonomy => place, :position => 1 },
@@ -22,15 +22,14 @@ taxons = [
     { :name => "Santiago de Cuba", :taxonomy => place, :position => 1, :parent => 'Place' },
     { :name => "Guantanamo", :taxonomy => place, :position => 1, :parent => 'Place' },
 
-  { :name => "Things to do", :taxonomy => things, :position => 1 },
-    { :name => "Hotels", :taxonomy => things, :position => 1, :parent => 'Things to do', :icon => 'hotel' },
-    { :name => "Eat Out", :taxonomy => things, :position => 1, :parent => 'Things to do', :icon => 'restaurant' },
-    { :name => "Drinks", :taxonomy => things, :position => 1, :parent => 'Things to do', :icon => 'bar' },
-    { :name => "Nightlife", :taxonomy => things, :position => 1, :parent => 'Things to do', :icon => 'disco' },
-    { :name => "Shopping", :taxonomy => things, :position => 1, :parent => 'Things to do', :icon => 'shopping' },
-    { :name => "Beaches", :taxonomy => things, :position => 1, :parent => 'Things to do', :icon => 'beach' },
-    { :name => "Transportation", :taxonomy => things, :position => 1, :parent => 'Things to do', :icon => 'bus' },
-    { :name => "Interesting Places", :taxonomy => things, :position => 1, :parent => 'Things to do', :icon => 'point' },
+  { :name => "Category", :taxonomy => category, :position => 1 },
+    { :name => "Hotels", :taxonomy => category, :position => 1, :parent => 'Category'},
+    { :name => "Flights", :taxonomy => category, :position => 1, :parent => 'Category'},
+    { :name => "Car Rental", :taxonomy => category, :position => 1, :parent => 'Category'},
+    { :name => "Transfers", :taxonomy => category, :position => 1, :parent => 'Category'},
+    { :name => "Tours", :taxonomy => category, :position => 1, :parent => 'Category'},
+    { :name => "Package", :taxonomy => category, :position => 1, :parent => 'Category'},
+    { :name => "Interesting Places", :taxonomy => category, :position => 1, :parent => 'Category'},
 
 ]
 
