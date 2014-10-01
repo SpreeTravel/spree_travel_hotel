@@ -49,44 +49,14 @@ properties = {
 Spree::Property.delete_all
 Spree::ProductProperty.delete_all
 
-def create_properties
-  print_create_header "Properties"
-  $properties.keys.each do |type|
-    pt = Spree::PropertyType.find_by_name(type)
-    hash = $properties[type]
-    hash.each do |key, value|
-      print_item 'p', :green
-      attrs = {
-        :name => key,
-        :presentation => value,
-      }
-      if [:include,:services].include?(type)
-        relative_path = "/../../vendor/assets/images/icons/"
-        file_name = key + ".png"
-        attrs[:icon] = File.new(File.dirname(__FILE__) + relative_path + file_name, "r")
-        print_item "i", :blue
-      end
-      attrs[:property_type_id] = pt.id if pt
-      pro = Spree::Property.create(attrs)
-    end
+
+### Creating Properties
+properties.keys.each do |type|
+  pt = Spree::PropertyType.find_by_name(type)
+  hash = properties[type]
+  hash.each do |key, value|
+    attrs = { :name => key, :presentation => value }
+    prop = Spree::Property.create(attrs)
   end
-  print_done
 end
 
-###############################################################################
-# Primero Borramos los properties
-###############################################################################
-if $delete_properties
-  delete_properties
-end
-
-if $delete_product_properties
-  delete_product_properties
-end
-
-###############################################################################
-# El pedazo de codigo para cargar las properties
-###############################################################################
-if $create_properties
-  create_properties
-end
