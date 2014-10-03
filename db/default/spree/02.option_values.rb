@@ -13,8 +13,6 @@ option_values = [
   {:name => "plan-american-plan", :presentation => "AP", :option_type => plan},
   {:name => "plan-all-inclusive", :presentation => "AI", :option_type => plan}
 ]
-### Deleting Option Values
-Spree::OptionValue.delete_all
 
 ### Creating Option Values
 option_values.each do |ov|
