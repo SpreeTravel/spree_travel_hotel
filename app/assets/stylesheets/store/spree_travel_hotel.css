@@ -1,8 +1,3 @@
-/*
- *= require spree/frontend
- *= require store/hotel_search_tab
-*/
-
 #hotel{
     float: left;
 }
@@ -45,5 +40,25 @@ span.stars-5{
     width: 73px;
     height: 16px;
     float: left;
+<<<<<<< HEAD
+=======
 }
 
+.search_date, .search_pax, .search_meal{
+    list-style: none;
+}
+
+ul.search_pax li{
+  display: inline;
+  float: left;
+  margin-right: 30px;
+>>>>>>> origin/2-3-stable
+}
+
+input#destination, input#keywords{
+  margin-top: 15px;
+}
+
+input#start_date, input#end_date{
+  margin-top: 15px;
+}
