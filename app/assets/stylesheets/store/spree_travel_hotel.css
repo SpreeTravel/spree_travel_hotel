@@ -1,8 +1,3 @@
-/*
- *= require store/spree_frontend
- *= require store/hotel_search_tab
-*/
-
 #hotel{
     float: left;
 }
@@ -20,7 +15,7 @@ span.stars-2{
     background-position: 0px 33px;
     width: 73px;
     height: 15px;
-    float: left;    
+    float: left;
 }
 
 span.stars-3{
@@ -28,7 +23,7 @@ span.stars-3{
     background-position: 0px 46px;
     width: 73px;
     height: 15px;
-    float: left;    
+    float: left;
 }
 
 span.stars-4{
@@ -36,7 +31,7 @@ span.stars-4{
     background-position: 0px 59px;
     width: 73px;
     height: 15px;
-    float: left;    
+    float: left;
 }
 
 span.stars-5{
@@ -44,6 +39,23 @@ span.stars-5{
     background-position: 0px 0px;
     width: 73px;
     height: 16px;
-    float: left;    
+    float: left;
 }
 
+.search_date, .search_pax, .search_meal{
+    list-style: none;
+}
+
+ul.search_pax li{
+  display: inline;
+  float: left;
+  margin-right: 30px;
+}
+
+input#destination, input#keywords{
+  margin-top: 15px;
+}
+
+input#start_date, input#end_date{
+  margin-top: 15px;
+}
