@@ -30,6 +30,7 @@ require 'spree/testing_support/url_helpers'
 
 # Requires factories defined in lib/spree_travel_hotel/factories.rb
 require 'spree_travel_hotel/factories'
+require 'spree_travel_core/factories'
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
@@ -68,7 +69,7 @@ RSpec.configure do |config|
 
   # Before each spec check if it is a Javascript test and switch between using database transactions or not where necessary.
   config.before :each do
-    DatabaseCleaner.strategy = example.metadata[:js] ? :truncation : :transaction
+    DatabaseCleaner.strategy = RSpec.current_example.metadata[:js] ? :truncation : :transaction
     DatabaseCleaner.start
   end
 
