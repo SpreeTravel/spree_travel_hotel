@@ -11,6 +11,7 @@ option_types = [
   {:name => "triple", :presentation => "Triple", :attr_type => 'float'},
   {:name => "first_child", :presentation => "first_child", :attr_type => 'float'},
   {:name => "second_child", :presentation => "second_child", :attr_type => 'float'}
+  {:name => "destination", :presentation => "Destination", :attr_type => 'destination'}
 ]
 
 ### Creating Option Types
