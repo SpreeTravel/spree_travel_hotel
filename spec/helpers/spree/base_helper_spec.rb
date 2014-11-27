@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe 'helper' do
+describe Spree::BaseHelper do
   it 'haves a definition for stars' do
-    expect(hotel_stars(build(:base_product))).to be_equal(5)
+    expect(Spree::BaseHelper.hotel_stars(build(:base_product))).to eq(5)
   end
 end

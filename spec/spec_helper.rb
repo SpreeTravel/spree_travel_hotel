@@ -69,8 +69,8 @@ RSpec.configure do |config|
 
   # Before each spec check if it is a Javascript test and switch between using database transactions or not where necessary.
   config.before :each do
-    DatabaseCleaner.strategy = RSpec.current_example.metadata[:js] ? :truncation : :transaction
-    DatabaseCleaner.start
+    # DatabaseCleaner.strategy = RSpec.current_example.metadata[:js] ? :truncation : :transaction
+    # DatabaseCleaner.start
   end
 
   # After each spec clean the database.
