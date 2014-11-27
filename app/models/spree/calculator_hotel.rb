@@ -1,16 +1,12 @@
 module Spree
   class CalculatorHotel
 
-    # TODO: Retornar la variante adem'as del precio
-    # TODO: valorar si 'variant' se puede poner como attr opcional para que se calcule dentro
-    def self.calculate_price(context, variant)
-      product = variant.product
+    def self.calculate_price(context, product)
       return [product.price.to_f] if product.rates.empty?
       prices = []
       days = context.end_date.to_date - context.start_date.to_date rescue 1
 
       product.rates.each do |r|
-        #next if variant && (variant.id != r.variant_id)
         next if context.start_date.present? && (context.start_date.to_date < r.start_date.to_date rescue false)
         next if context.end_date.present? && (context.end_date.to_date > r.end_date.to_date rescue false)
         next if context.plan.present? && context.plan.to_i != r.plan.to_i
