@@ -1,6 +1,9 @@
 module Spree
   class CalculatorHotel
 
+    MAX_ADULTS = 3
+    MAX_CHILDREN = 2
+
     def self.calculate_price(context, product)
       return [product.price.to_f] if product.rates.empty?
       prices = []
@@ -20,13 +23,29 @@ module Spree
       prices
     end
 
+    def self.generate_combinations(product)
+      old_combinations = product.combinations.pluck(:id)
+      new_combinations = []
+      product.rates.each do |r|
+        combination = Spree::Combination.where(:product_id => product.id)
+        combination = combination.where(:start_date => r.start_date.to_date)
+        combination = combination.where(:end_date => r.end_data.to_date)
+        for adults in 1..MAX_ADULTS
+          for children in 1..MAX_CHILDREN
+            combination = combination.where(:adults => adults)
+            combination = combination.where(:chilndre => children)
+          end
+        end
+      end
+    end
+
     private
 
     def self.get_adult_list(rate, pt_adults)
       if pt_adults.present?
         [pt_adults]
       else
-        [1, 2, 3]
+        (1..MAX_ADULTS).to_a
       end
     end
 
@@ -34,7 +53,7 @@ module Spree
       if pt_child.present?
         [pt_child]
       else
-        [1, 2]
+        (1..MAX_CHILDREN).to_a
       end
     end
 
