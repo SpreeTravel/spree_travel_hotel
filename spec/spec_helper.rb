@@ -69,13 +69,25 @@ RSpec.configure do |config|
 
   # Before each spec check if it is a Javascript test and switch between using database transactions or not where necessary.
   config.before :each do
-    DatabaseCleaner.strategy = RSpec.current_example.metadata[:js] ? :truncation : :transaction
-    DatabaseCleaner.start
+    # DatabaseCleaner.strategy = RSpec.current_example.metadata[:js] ? :truncation : :transaction
+    # DatabaseCleaner.start
   end
 
   # After each spec clean the database.
   config.after :each do
     DatabaseCleaner.clean
+  end
+
+  original_stderr = $stderr
+  original_stdout = $stdout
+  config.before(:all) do
+    # Redirect stderr and stdout
+    $stderr = File.new(File.join(File.dirname(__FILE__), 'dev', 'null.txt'), 'w')
+    $stdout = File.new(File.join(File.dirname(__FILE__), 'dev', 'null.txt'), 'w')
+  end
+  config.after(:all) do
+    $stderr = original_stderr
+    $stdout = original_stdout
   end
 
   config.fail_fast = ENV['FAIL_FAST'] || false
