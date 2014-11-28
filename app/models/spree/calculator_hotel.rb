@@ -13,6 +13,7 @@ module Spree
         next if context.start_date.present? && (context.start_date.to_date < r.start_date.to_date rescue false)
         next if context.end_date.present? && (context.end_date.to_date > r.end_date.to_date rescue false)
         next if context.plan.present? && context.plan.to_i != r.plan.to_i
+        next if context.room.present? && context.room.to_i != r.variant_id
         adults_array = self.get_adult_list(r, context.adult)
         children_array = self.get_child_list(r, context.child)
         combinations = adults_array.product(children_array)
@@ -32,8 +33,12 @@ module Spree
         combination = combination.where(:end_date => r.end_data.to_date)
         for adults in 1..MAX_ADULTS
           for children in 1..MAX_CHILDREN
-            combination = combination.where(:adults => adults)
-            combination = combination.where(:chilndre => children)
+            for room in product.variants
+              for plan in Spree::OptionType.find_by_name('plan').option_values
+                combination = combination.where(:adults => adults)
+                combination = combination.where(:chilndre => children)
+              end
+            end
           end
         end
       end
