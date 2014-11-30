@@ -1,8 +1,13 @@
 module Spree
   class CalculatorHotel < BaseCalculator
 
-    MAX_ADULTS = 3
-    MAX_CHILDREN = 2
+    def max_adults
+      3
+    end
+
+    def max_children
+      2
+    end
 
     def calculate_price(context, product)
       return [product.price.to_f] if product.rates.empty?
@@ -31,7 +36,7 @@ module Spree
     def get_rate_price(rate, adults, children)
       adults = adults.to_i
       children = children.to_i
-      adults_hash = {1 => 'simple', 2 => 'double', 3 =>'triple'}
+      adults_hash = {1 => 'simple', 2 => 'double', 3 => 'triple'}
       price = adults * rate.send(adults_hash[adults]).to_f
       price += rate.first_child.to_f if children >= 1
       price += rate.second_child.to_f if children == 2
@@ -44,7 +49,7 @@ module Spree
       if pt_adults.present?
         [pt_adults]
       else
-        (1..MAX_ADULTS).to_a
+        (1..max_adults).to_a
       end
     end
 
@@ -52,7 +57,7 @@ module Spree
       if pt_child.present?
         [pt_child]
       else
-        (1..MAX_CHILDREN).to_a
+        (0..max_children).to_a
       end
     end
 
