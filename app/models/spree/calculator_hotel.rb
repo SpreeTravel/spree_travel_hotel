@@ -1,12 +1,12 @@
 module Spree
   class CalculatorHotel < BaseCalculator
 
-    def max_adults
-      3
+    def adults_range
+      (1..3).to_a
     end
 
-    def max_children
-      2
+    def children_range
+      (0..2).to_a
     end
 
     def calculate_price(context, product)
@@ -29,8 +29,20 @@ module Spree
       prices
     end
 
-    def combination_string(rate)
+    def combination_string_for_generation(rate)
       "ROOM:#{rate.variant_id},PLAN:#{rate.plan}"
+    end
+
+    def combination_string_for_search(context)
+      if context.plan.present? && context.room.present?
+        "ROOM:#{context.room},PLAN:#{rate.plan}"
+      elsif context.plan.present?
+        "%PLAN:#{rate.plan}"
+      elsif context.room.present
+        "ROOM:#{context.room}%"
+      else
+        "%"
+      end
     end
 
     def get_rate_price(rate, adults, children)
@@ -49,7 +61,7 @@ module Spree
       if pt_adults.present?
         [pt_adults]
       else
-        (1..max_adults).to_a
+        adults_range
       end
     end
 
@@ -57,7 +69,7 @@ module Spree
       if pt_child.present?
         [pt_child]
       else
-        (0..max_children).to_a
+        children_range
       end
     end
 
