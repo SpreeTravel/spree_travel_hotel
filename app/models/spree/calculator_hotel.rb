@@ -34,9 +34,9 @@ module Spree
     end
 
     def combination_string_for_search(context)
-      if context.plan.present? && context.room.present?
-        "ROOM:#{context.room},PLAN:#{rate.plan}"
-      elsif context.plan.present?
+      if context[:plan].present? && context[:room].present?
+        "ROOM:#{context[:room]},PLAN:#{rate[:plan]}"
+      elsif context[:plan].present?
         "%PLAN:#{rate.plan}"
       elsif context.room.present
         "ROOM:#{context.room}%"
