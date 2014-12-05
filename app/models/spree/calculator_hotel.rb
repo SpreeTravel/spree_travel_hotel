@@ -38,7 +38,7 @@ module Spree
         "ROOM:#{context[:room]},PLAN:#{rate[:plan]}"
       elsif context[:plan].present?
         "%PLAN:#{rate.plan}"
-      elsif context.room.present
+      elsif context.room.present?
         "ROOM:#{context.room}%"
       else
         "%"
