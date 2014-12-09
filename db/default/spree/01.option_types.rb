@@ -1,17 +1,17 @@
 ### This is the data
 option_types = [
-  {:name => "start_date", :presentation => "Start Date", :attr_type => 'date'},
-  {:name => "end_date", :presentation => "End Date", :attr_type => 'date'},
-  {:name => "room", :presentation => "Room", :attr_type => 'selection'},
-  {:name => "plan", :presentation => "Plan", :attr_type => 'selection'},
-  {:name => "adult", :presentation => "Adult", :attr_type => 'integer'},
-  {:name => "child", :presentation => "Child", :attr_type => 'integer'},
-  {:name => "simple", :presentation => "Simple", :attr_type => 'float'},
-  {:name => "double", :presentation => "Double", :attr_type => 'float'},
-  {:name => "triple", :presentation => "Triple", :attr_type => 'float'},
-  {:name => "first_child", :presentation => "first_child", :attr_type => 'float'},
-  {:name => "second_child", :presentation => "second_child", :attr_type => 'float'},
-  {:name => "destination", :presentation => "Destination", :attr_type => 'destination'},
+  {:name => "start_date", :presentation => "Start Date", :attr_type => 'date', :short => 'Start'},
+  {:name => "end_date", :presentation => "End Date", :attr_type => 'date', :short => 'End'},
+  {:name => "room", :presentation => "Room", :attr_type => 'selection', :short => 'Room'},
+  {:name => "plan", :presentation => "Plan", :attr_type => 'selection', :short => 'Plan'},
+  {:name => "adult", :presentation => "Adult", :attr_type => 'integer', :short => 'Adult'},
+  {:name => "child", :presentation => "Child", :attr_type => 'integer', :short => 'Child'},
+  {:name => "simple", :presentation => "Simple", :attr_type => 'float', :short => 'x 1'},
+  {:name => "double", :presentation => "Double", :attr_type => 'float', :short => 'x 2'},
+  {:name => "triple", :presentation => "Triple", :attr_type => 'float', :short => 'x 3'},
+  {:name => "first_child", :presentation => "first_child", :attr_type => 'float', :short => '1st'},
+  {:name => "second_child", :presentation => "second_child", :attr_type => 'float', :short => '2nd'},
+  {:name => "destination", :presentation => "Destination", :attr_type => 'destination', :short => 'Dest'},
 ]
 
 ### Creating Option Types
