@@ -15,7 +15,7 @@ describe Spree::CalculatorHotel do
 
       prod.generate_variants
       variant = prod.variants.first
-      puts variant.sku
+
       rate = create(:rate_hotel, variant: variant)
       line_item = create(:line_item, quantity: 0, product: prod, variant: variant)
       context = create(:hotel_context, line_item: line_item, variant: variant)

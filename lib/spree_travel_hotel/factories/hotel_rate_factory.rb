@@ -14,7 +14,7 @@ FactoryGirl.define do
     after(:create) { |rate, evaluator|
       rate.set_persisted_option_value(:start_date, evaluator.start_date)
       rate.set_persisted_option_value(:end_date, evaluator.end_date)
-      rate.set_persisted_option_value(:plan, evaluator.plan)
+      rate.set_persisted_option_value(:plan, evaluator.plan.id)
       rate.set_persisted_option_value(:simple, evaluator.simple)
       rate.set_persisted_option_value(:double, evaluator.double)
       rate.set_persisted_option_value(:triple, evaluator.triple)
