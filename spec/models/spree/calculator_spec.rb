@@ -17,7 +17,7 @@ describe Spree::CalculatorHotel do
       variant = prod.variants.first
 
       rate = create(:rate_hotel, variant: variant)
-      line_item = create(:line_item, quantity: 0, product: prod, variant: variant)
+      line_item = create(:travel_line_item, product: prod, variant: variant)
       context = create(:hotel_context, line_item: line_item, variant: variant)
 
       calculator_class = ("Spree::CalculatorHotel").constantize
