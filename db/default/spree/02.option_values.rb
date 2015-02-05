@@ -16,5 +16,5 @@ option_values = [
 
 ### Creating Option Values
 option_values.each do |ov|
-  Spree::OptionValue.create!(ov)
+  Spree::OptionValue.create(ov)
 end
