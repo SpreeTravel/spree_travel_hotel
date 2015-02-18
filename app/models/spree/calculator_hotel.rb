@@ -29,17 +29,17 @@ module Spree
       prices
     end
 
-    def calculate_price(context, product)
+    def calculate_price(context, product, options)
       return [product.price.to_f] if product.combinations.empty?
       prices = []
-      days = context.end_date.to_date - context.start_date.to_date rescue 1
-      other = combination_string_for_search(context)
+      days = context.end_date(options).to_date - context.start_date(options).to_date rescue 1
+      other = combination_string_for_search(context, options)
 
       list = product.combinations
-      list = list.where('start_date <= ?', context.start_date) if context.start_date.present?
-      list = list.where('end_date >= ?', context.end_date) if context.end_date.present?
-      list = list.where(:adults => context.adult) if context.adult.present?
-      list = list.where(:children => context.child) if context.child.present?
+      list = list.where('start_date <= ?', context.start_date(options)) if context.start_date(options).present?
+      list = list.where('end_date >= ?', context.end_date(options)) if context.end_date(options).present?
+      list = list.where(:adults => context.adult(options)) if context.adult(options).present?
+      list = list.where(:children => context.child(options)) if context.child(options).present?
       list = list.where('other like ?', other) unless other.nil?
       Log.debug(list.explain)
       prices = list.map {|c| (c.price * days).to_i }
@@ -56,9 +56,9 @@ module Spree
       "ROOM:#{room},PLAN:#{plan}"
     end
 
-    def combination_string_for_search(context)
-      plan = context.plan || context[:plan]
-      room = context.room || context[:room]
+    def combination_string_for_search(context, options)
+      plan = context.plan(options) || context[:plan]
+      room = context.room(options) || context[:room]
       if plan.present? && room.present?
         "ROOM:#{room},PLAN:#{plan}"
       elsif plan.present?
