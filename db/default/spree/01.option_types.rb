@@ -6,6 +6,7 @@ option_types = [
   {:name => "plan", :presentation => "Plan", :attr_type => 'selection', :short => 'Plan'},
   {:name => "adult", :presentation => "Adult", :attr_type => 'integer', :short => 'Adult'},
   {:name => "child", :presentation => "Child", :attr_type => 'integer', :short => 'Child'},
+  {:name => "rooms", :presentation => "Rooms", :attr_type => 'integer', :short => 'Rooms Count'},
   {:name => "simple", :presentation => "Simple", :attr_type => 'float', :short => 'x 1'},
   {:name => "double", :presentation => "Double", :attr_type => 'float', :short => 'x 2'},
   {:name => "triple", :presentation => "Triple", :attr_type => 'float', :short => 'x 3'},
