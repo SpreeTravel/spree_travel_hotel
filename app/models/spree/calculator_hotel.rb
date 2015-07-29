@@ -9,66 +9,34 @@ module Spree
       (0..2).to_a
     end
 
-    def calculate_price_old(context, product)
-      return [product.price.to_f] if product.rates.empty?
-      prices = []
-      days = context.end_date.to_date - context.start_date.to_date rescue 1
-
-      product.rates.each do |r|
-        next if context.start_date.present? && (context.start_date.to_date < r.start_date.to_date rescue false)
-        next if context.end_date.present? && (context.end_date.to_date > r.end_date.to_date rescue false)
-        next if context.plan.present? && context.plan.to_i != r.plan.to_i
-        next if context.room.present? && context.room.to_i != r.variant_id
-        adults_array = get_adult_list(r, context.adult)
-        children_array = get_child_list(r, context.child)
-        combinations = adults_array.product(children_array)
-        combinations.each do |ad, ch|
-          prices << get_rate_price(r, ad, ch) * days
-        end
-      end
-      prices
-    end
-
     def calculate_price(context, product, options)
+      # TODO acerlo generico para que se apte cuando hay cambios en los context por el usuario
       return [product.price.to_f] if product.combinations.empty?
       prices = []
       days = context.end_date(options).to_date - context.start_date(options).to_date rescue 1
-      other = combination_string_for_search(context, options)
+      rooms = context.rooms(options).to_i rescue 1
 
       list = product.combinations
       list = list.where('start_date <= ?', context.start_date(options)) if context.start_date(options).present?
       list = list.where('end_date >= ?', context.end_date(options)) if context.end_date(options).present?
       list = list.where(:adults => context.adult(options)) if context.adult(options).present?
       list = list.where(:children => context.child(options)) if context.child(options).present?
-      list = list.where('other like ?', other) unless other.nil?
+      list = list.where(:room => context.room(options)) if context.room(options).present?
+      list = list.where(:plan => context.plan(options)) if context.plan(options).present?
+      list = list.order('price ASC')
       Log.debug(list.explain)
-      prices = list.map {|c| (c.price * days).to_i }
-      prices
+      list
     end
 
     # TODO: el problma esta en que la variante es distinta para cada producto
     # y en el combo en el buscador salen los ID de los option types
     # y nunca matchea eso
-    def combination_string_for_generation(rate)
-      plan = rate.plan
-      raise Exception.new("SOMETHING WRONG") if rate.variant.option_values.count != 1
-      room = rate.variant.option_values.first.id
-      "ROOM:#{room},PLAN:#{plan}"
-    end
-
-    def combination_string_for_search(context, options)
-      plan = context.plan(options) || context[:plan]
-      room = context.room(options) || context[:room]
-      if plan.present? && room.present?
-        "ROOM:#{room},PLAN:#{plan}"
-      elsif plan.present?
-        "%PLAN:#{plan}"
-      elsif room.present?
-        "ROOM:#{room}%"
-      else
-        nil
-      end
-    end
+    # def combination_string_for_generation(rate)
+    #   plan = rate.plan
+    #   raise Exception.new("SOMETHING WRONG") if rate.variant.option_values.count != 1
+    #   room = rate.variant.option_values.first.id
+    #   "ROOM:#{room},PLAN:#{plan}"
+    # end
 
     def get_rate_price(rate, adults, children)
       adults = adults.to_i
