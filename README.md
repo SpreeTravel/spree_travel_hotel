@@ -20,7 +20,7 @@ Spree Travel Hotel is not yet distributed as a gem, so it should be used in your
 1. Add the following to your Gemfile
 
   ```ruby
-    gem 'spree_travel_hotel’, :git => 'https://github.com/openjaf/ spree_travel_hotel.git', :branch => '2-3-stable'
+    gem 'spree_travel_hotel’, :github => 'openjaf/spree_travel_hotel', :branch => '3-0-stable'
   ```
 
 2. Run `bundle install`

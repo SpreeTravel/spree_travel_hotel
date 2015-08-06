@@ -12,8 +12,8 @@ Gem::Specification.new do |s|
   s.description = 'Add hotel logic into spree'
   s.required_ruby_version = '>= 1.9.3'
 
-  s.authors   = ['Pedro Quintero', 'Miguel Sancho', 'Cesar Lage', 'Raul Perez-alejo', 'Alejandro Dustet']
-  s.email     = 'pqr@openjaf.com'
+  s.authors   = ['Pedro Quintero', 'Miguel Sancho', 'Cesar Lage', 'Raul Perez-Alejo Neyra']
+  s.email     = 'info@openjaf.com'
   s.homepage  = 'http://github.com/openjaf/spree_travel_hotel'
 
   #s.files       = `git ls-files`.split("\n")
