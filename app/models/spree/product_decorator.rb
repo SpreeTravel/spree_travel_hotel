@@ -8,5 +8,9 @@ module Spree
     rescue
     end
 
+    def hotel?
+      self.product_type == Spree::ProductType.find_by_name('hotel')
+    end
+
   end
 end
