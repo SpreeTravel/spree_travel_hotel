@@ -9,23 +9,32 @@ module Spree
       (0..2).to_a
     end
 
-    def calculate_price(context, product, options)
-      # TODO acerlo generico para que se apte cuando hay cambios en los context por el usuario
-      return [product.price.to_f] if product.combinations.empty?
+    def calculate_price(context, variant, options)
+      # TODO hacerlo generico para que se apte cuando hay cambios en los context por el usuario
+      return [variant.price.to_f] if variant.rates.empty?
       prices = []
       days = context.end_date(options).to_date - context.start_date(options).to_date rescue 1
       rooms = context.rooms(options).to_i rescue 1
 
-      list = product.combinations
-      list = list.where('start_date <= ?', context.start_date(options)) if context.start_date(options).present?
-      list = list.where('end_date >= ?', context.end_date(options)) if context.end_date(options).present?
-      list = list.where(:adults => context.adult(options)) if context.adult(options).present?
-      list = list.where(:children => context.child(options)) if context.child(options).present?
-      list = list.where(:room => context.room(options)) if context.room(options).present?
-      list = list.where(:plan => context.plan(options)) if context.plan(options).present?
-      list = list.order('price ASC')
-      Log.debug(list.explain)
-      list
+      list = variant.rates
+      rates = []
+      list.each do |r|
+        if r.start_date <= context.start_date(options).to_s && r.end_date >= context.end_date(options).to_s
+          rates << r
+        end
+      end
+
+      rates
+
+      # # list = list.where('start_date <= ?', context.start_date(options)) if context.start_date(options).present?
+      # # list = list.where('end_date >= ?', context.end_date(options)) if context.end_date(options).present?
+      # list = list.where(:adults => context.adult(options)) if context.adult(options).present?
+      # list = list.where(:children => context.child(options)) if context.child(options).present?
+      # list = list.where(:room => context.room(options)) if context.room(options).present?
+      # list = list.where(:plan => context.plan(options)) if context.plan(options).present?
+      # list = list.order('price ASC')
+      # Log.debug(list.explain)
+      # list
     end
 
     # TODO: el problma esta en que la variante es distinta para cada producto
