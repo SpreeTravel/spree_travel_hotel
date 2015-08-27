@@ -12,9 +12,9 @@ module Spree
     def calculate_price(context, variant, options)
       # TODO hacerlo generico para que se apte cuando hay cambios en los context por el usuario
       return [variant.price.to_f] if variant.rates.empty?
-      prices = []
-      days = context.end_date(options).to_date - context.start_date(options).to_date rescue 1
-      rooms = context.rooms(options).to_i rescue 1
+      # prices = []
+      # days = context.end_date(options).to_date - context.start_date(options).to_date rescue 1
+      # rooms = context.rooms(options).to_i rescue 1
 
       list = variant.rates
       rates = []
@@ -46,7 +46,7 @@ module Spree
     #   room = rate.variant.option_values.first.id
     #   "ROOM:#{room},PLAN:#{plan}"
     # end
-
+    
     def get_rate_price(rate, adults, children)
       adults = adults.to_i
       children = children.to_i
