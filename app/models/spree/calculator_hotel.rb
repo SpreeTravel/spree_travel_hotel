@@ -12,19 +12,22 @@ module Spree
     def calculate_price(context, variant, options)
       # TODO hacerlo generico para que se apte cuando hay cambios en los context por el usuario
       return [variant.price.to_f] if variant.rates.empty?
-      # prices = []
       # days = context.end_date(options).to_date - context.start_date(options).to_date rescue 1
       # rooms = context.rooms(options).to_i rescue 1
+      adults_hash = {1 => 'simple', 2 => 'double', 3 => 'triple'}
 
       list = variant.rates
-      rates = []
+      array = []
       list.each do |r|
         if r.start_date <= context.start_date(options).to_s && r.end_date >= context.end_date(options).to_s
-          rates << r
+          price = context.adult.to_i * r.send(adults_hash[context.adult.to_i]).to_f
+          price += r.first_child.to_f if context.child.to_i >= 1
+          price += r.second_child.to_f if context.child.to_i == 2
+          # price = price * days * rooms # TODO "x días por cuarto"
+          array << {price: price, rate: r.id}
         end
       end
-
-      rates
+      array
 
       # # list = list.where('start_date <= ?', context.start_date(options)) if context.start_date(options).present?
       # # list = list.where('end_date >= ?', context.end_date(options)) if context.end_date(options).present?
