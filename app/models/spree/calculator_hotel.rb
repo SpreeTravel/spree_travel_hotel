@@ -11,11 +11,12 @@ module Spree
 
     def calculate_price(context, variant, options)
       # TODO hacerlo generico para que se apte cuando hay cambios en los context por el usuario
-      return [variant.price.to_f] if variant.rates.empty?
+      # return [variant.price.to_f] if variant.rates.empty?
+      return [] if variant.rates.empty?
       prices = []
       days = context.end_date(options).to_date - context.start_date(options).to_date rescue 1
       rooms = context.rooms(options).to_i rescue 1
-
+      #byebug
       list = variant.rates
       rates = []
       list.each do |r|

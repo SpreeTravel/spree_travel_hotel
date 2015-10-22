@@ -7,7 +7,7 @@
         </div>
       </div>
     </div>
-    <% rates = display_the_price(v)%>
+    <% rates = display_the_price(v) %>
     <% rates.each do |r|%>
         <div class="price-section">
           <span class="price"><small>MEAL PLAN:</small> <%= Spree::OptionValue.find(r.plan).presentation%></span>
