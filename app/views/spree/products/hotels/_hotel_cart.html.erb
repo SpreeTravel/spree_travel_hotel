@@ -10,15 +10,12 @@
     <% rates = display_the_price(v)%>
     <% rates.each do |r|%>
         <div class="price-section">
-          <span class="price"><small>MEAL PLAN:</small> <%= Spree::OptionValue.find(r.plan).presentation%></span>
-          <span class="price"><small>PER/NIGHT:</small> <%=get_rate_price(r, params[:hotel_adult], params[:hotel_child])%></span>
+          <span class="price"><small>MEAL PLAN:</small> <%= Spree::OptionValue.find(Spree::Rate.find(r[:rate]).plan).presentation %></span>
+          <span class="price"><small>PER/NIGHT:</small> <%= r[:price]%></span>
         </div>
         <div class="action-section">
-          <%= render :partial => 'spree/products/cart_form', :locals => { product: @product, variant_id: v.id, rate_id: r.id, mini: true} %>
+          <%= render :partial => 'spree/products/cart_form', :locals => { product: @product, variant_id: v.id, rate_id: r[:rate], mini: true} %>
         </div>
     <%end%>
   </div>
 <% end %>
-
-
-
