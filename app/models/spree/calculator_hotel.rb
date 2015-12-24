@@ -10,14 +10,14 @@ module Spree
     end
 
     # TODO preparar esto para que reciba un rate y calcule el precio de un solo producto.....
-    def calculate_price(context, variant, options)
+    def calculate_price(context, product, options)
       # TODO hacerlo generico para que se apte cuando hay cambios en los context por el usuario
-      return [variant.price.to_f] if variant.rates.empty?
+      return [product.price.to_f] if product.rates.empty?
       # days = context.end_date(options).to_date - context.start_date(options).to_date rescue 1
       # rooms = context.rooms(options).to_i rescue 1
       adults_hash = {1 => 'simple', 2 => 'double', 3 => 'triple'}
 
-      list = variant.rates
+      list = product.rates
       array = []
       list.each do |r|
         if r.start_date <= context.start_date(options).to_s && r.end_date >= context.end_date(options).to_s
