@@ -10,21 +10,21 @@ module Spree
     end
 
     # TODO preparar esto para que reciba un rate y calcule el precio de un solo producto.....
-    def calculate_price(context, product, options)
+    def calculate_price(context, product, variant, options)
       # TODO hacerlo generico para que se apte cuando hay cambios en los context por el usuario
       return [product.price.to_f] if product.rates.empty?
       # days = context.end_date(options).to_date - context.start_date(options).to_date rescue 1
       # rooms = context.rooms(options).to_i rescue 1
       adults_hash = {1 => 'simple', 2 => 'double', 3 => 'triple'}
 
-      list = product.rates
+      list = product.variants.where(id: variant.id).first.rates
       array = []
       list.each do |r|
         if r.start_date <= context.start_date(options).to_s && r.end_date >= context.end_date(options).to_s
-          avg_price = r.send(adults_hash[context.adult.to_i]).to_f
-          price = context.adult.to_i * avg_price
-          price += r.first_child.to_f if context.child.to_i >= 1
-          price += r.second_child.to_f if context.child.to_i == 2
+          avg_price = r.send(adults_hash[context.adult(options).to_i]).to_f
+          price = context.adult(options).to_i * avg_price
+          price += r.first_child.to_f if context.child(options).to_i >= 1
+          price += r.second_child.to_f if context.child(options).to_i == 2
           # price = price * days * rooms # TODO "x días por cuarto"
           array << {price: price, rate: r.id, avg: avg_price}
         end

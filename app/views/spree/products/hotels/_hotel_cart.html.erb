@@ -1,5 +1,5 @@
-<% @childrens.each do |v|%>
-  <div class="details col-xs-12 col-sm-8 col-md-9">
+<% @product.variants.each do |v|%>
+  <div class=" ">
     <div>
       <div>
         <div class="box-title">
@@ -7,15 +7,16 @@
         </div>
       </div>
     </div>
-    <% rates = display_the_price(v)%>
-    <% rates.each do |r|%>
-        <div class="price-section">
-          <span class="price"><small>MEAL PLAN:</small> <%= Spree::OptionValue.find(Spree::Rate.find(r[:rate]).plan).presentation %></span>
-          <span class="price"><small>PER/NIGHT:</small> <%= r[:price]%></span>
-        </div>
+    <% hashs = display_the_price(v)%>
+    <% hashs.each do |hash|%>
+      <div class="price-section">
+        <div class="price"><small>MEAL PLAN:</small> <%= Spree::OptionValue.find(Spree::Rate.find(hash[:rate]).plan).presentation%></div>
+        <div class="rate"><small>PER/NIGHT:</small> <%=hash[:price]%></div>
+
         <div class="action-section">
-          <%= render :partial => 'spree/products/cart_form', :locals => { product: @product, variant_id: v.id, rate_id: r[:rate], mini: true} %>
+          <%= render :partial => 'spree/products/cart_form', :locals => { product: @product, variant_id: v.id, rate_id: hash[:rate], mini: true} %>
         </div>
+      </div>
     <%end%>
   </div>
-<% end %>
+<%end%>
