@@ -1,3 +1,0 @@
-<!-- insert_after "erb[loud]:contains('link_to(product_path(new_params)')" 
-     sequence :after => "change_product_index_partial" -->
-<span class="stars-<%= hotel_stars(product) %>"></span>

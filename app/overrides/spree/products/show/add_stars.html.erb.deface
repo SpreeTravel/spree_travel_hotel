@@ -1,2 +1,4 @@
 <!-- insert_bottom 'h1'-->
-<span class="stars-<%= hotel_stars(@product) %>"></span>
+<%if @product.hotel?%>
+  <span class="stars-<%= hotel_stars(@product) %>"></span>
+<%end%>
