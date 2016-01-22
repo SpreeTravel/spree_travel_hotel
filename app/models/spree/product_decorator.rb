@@ -6,5 +6,9 @@ module Spree
       self.product_type == Spree::ProductType.find_by_name('hotel')
     end
 
+    def self.hotels
+      where(product_type_id: Spree::ProductType.find_by_name('hotel').id )
+    end
+
   end
 end

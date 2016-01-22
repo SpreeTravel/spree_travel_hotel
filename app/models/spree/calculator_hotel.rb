@@ -22,7 +22,7 @@ module Spree
       list.each do |r|
         if r.start_date <= context.start_date(options).to_s && r.end_date >= context.end_date(options).to_s
           avg_price = r.send(adults_hash[context.adult(options).to_i]).to_f
-          price = context.adult(options).to_i * avg_price
+          price = context.adult(options).to_i * avg_price * context.room_count(options).to_i
           price += r.first_child.to_f if context.child(options).to_i >= 1
           price += r.second_child.to_f if context.child(options).to_i == 2
           # price = price * days * rooms # TODO "x días por cuarto"
