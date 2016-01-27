@@ -33,7 +33,7 @@
           </div>
         </div>
       </div>
-      <% hash = display_the_price(product)%>
+      <% hash = display_travel_price(product)%>
       <% if !hash.empty? %>
         <div class="price-section">
           <span class="price"><small>MEAL PLAN:</small> <%= Spree::OptionValue.find(Spree::Rate.find(hash.first[:rate]).plan).presentation%></span><br/>
