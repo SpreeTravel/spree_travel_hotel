@@ -10,7 +10,7 @@ module Spree
     end
 
      def calculate_price(context, product, variant, options)
-       return [product.price.to_f] if product.rates.empty?
+       return [price:product.price.to_f] if product.rates.empty?
       # days = context.end_date(options).to_date - context.start_date(options).to_date rescue 1
       # rooms = context.rooms(options).to_i rescue 1
       adults_hash = {1 => 'simple', 2 => 'double', 3 => 'triple'}
