@@ -22,7 +22,13 @@
       <div class="search_box_row form-group">
         <label for="<%= prefix %><%=destination.name%>"><%= Spree.t(destination.presentation) %></label>
         <div class="search_box_right">
-          <%= text_field_tag "#{prefix}destination", params['hotel_destination'], :class => "#{prefix}inputs form-control" %>
+          <%= text_field_tag "#{prefix}destination", params['hotel_destination'], :class => "#{prefix}inputs form-control", list: 'destinations' %>
+          <!-- This must be moved to an ajax request into frontend/spree/taxon_controller -->
+          <datalist id="destinations">
+            <% Spree::Taxon.includes(:children).where(name: 'Destination').first.children.each do |d|%>
+              <option value="<%= d.name %>">
+            <%end%>
+          </datalist>
         </div>
       </div>
 
